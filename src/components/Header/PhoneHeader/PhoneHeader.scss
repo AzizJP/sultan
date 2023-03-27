@@ -1,0 +1,101 @@
+@import '../../../styles/constants.scss';
+
+.header-phone {
+  &__top-section {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+    padding: 10px $paddingPhone 10px;
+    width: calc(100% - $paddingPhone * 2);
+
+    &:after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      height: 1px;
+      width: 100%;
+      background-color: $colorDarkBlueTransparent;
+    }
+  }
+
+  &__menu {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    background-color: $colorLightOrange;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+  }
+
+  &__busket {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+
+    &-items-amount {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: absolute;
+      top: -5px;
+      right: -7px;
+      width: 17px;
+      height: 17px;
+      border-radius: 50px;
+      background-color: $colorLightOrange;
+      font-weight: 700;
+      font-size: 10px;
+      line-height: 12px;
+      color: $colorWhite;
+    }
+  }
+
+  &__bottom-section {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+    padding: 5px $paddingPhone;
+    width: calc(100% - $paddingPhone * 2);
+
+    &:after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      height: 1px;
+      width: 100%;
+      background-color: $colorDarkBlueTransparent;
+    }
+  }
+
+  &__button {
+    display: flex;
+    flex-grow: 1;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    padding: 8px 0 7px;
+    gap: 6px;
+    background-color: $colorWhite;
+    border: none;
+    cursor: pointer;
+
+    &:first-child {
+      border-right: 1px dashed $colorDarkBlueTransparent;
+    }
+
+    &-title {
+      margin: 0;
+      font-weight: 600;
+      font-size: 12px;
+      line-height: 15px;
+    }
+  }
+}

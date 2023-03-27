@@ -1,0 +1,236 @@
+@import '../../../styles/constants.scss';
+
+.header-desktop {
+  &__section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    width: 100%;
+
+    &:after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      height: 1px;
+      width: 100vw;
+      background-color: $colorDarkBlueTransparent;
+    }
+  }
+
+  &__wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    max-width: $maxWidth;
+    height: $headerTopSectionHeight;
+
+    &_bottom {
+      height: $headerBottomSectionHeight;
+    }
+  }
+
+  &__search-group {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+  }
+
+  &__info-group {
+    display: flex;
+    align-items: center;
+    gap: 50px;
+  }
+
+  &__button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    padding: 21px 54px;
+    background-color: $colorLightOrange;
+    border: none;
+    border-radius: 79px;
+
+    &_price {
+      padding: 21px 43px;
+    }
+
+    &-text {
+      margin: 0;
+      font-weight: 700;
+      line-height: 17px;
+      color: $colorWhite;
+    }
+  }
+
+  &__search {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 10px;
+    background-color: $colorLightGrey;
+    border-radius: 36px;
+
+    &-input {
+      padding: 10px;
+      border: none;
+      border-radius: 36px;
+      background-color: $colorLightGrey;
+      font-size: 12px;
+      color: $colorGrey;
+    }
+
+    &-button {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 39px;
+      height: 39px;
+      background-color: $colorLightOrange;
+      border: none;
+      border-radius: 50%;
+    }
+  }
+}
+
+.address {
+  display: flex;
+  gap: 40px;
+  font-style: normal;
+
+  &__section {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+  }
+
+  &__text-group {
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__title {
+    margin: 0;
+    font-weight: 600;
+    line-height: 18px;
+  }
+
+  &__subtitle {
+    margin: 0;
+    font-weight: 300;
+    font-size: 12px;
+    line-height: 16px;
+    color: $colorDarkBlue;
+  }
+}
+
+.info {
+  display: flex;
+  gap: 60px;
+  list-style: none;
+  color: $colorDarkBlue;
+}
+
+.phone-number {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  &__section {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+  }
+
+  &__title {
+    text-align: end;
+    margin: 0;
+    font-weight: 600;
+  }
+
+  &__subtitle {
+    text-align: end;
+    margin: 0;
+    font-weight: 300;
+    font-size: 12px;
+    color: $colorDarkBlue;
+  }
+
+  &__button {
+    text-align: end;
+    border: none;
+    background-color: $colorWhite;
+    font-size: 10px;
+    color: $colorDarkBlue;
+    text-decoration: underline;
+  }
+
+  &__photo {
+    display: block;
+    position: relative;
+    background: url(../../../images/photo.jpg) no-repeat center/contain;
+    width: 70px;
+    height: 92px;
+
+    &:before {
+      content: '';
+      position: absolute;
+      top: 28px;
+      right: 6px;
+      background-color: $colorGreen;
+      width: 8px;
+      height: 8px;
+      border: 2px solid #f0f6fa;
+      border-radius: 50%;
+    }
+  }
+}
+
+.basket {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+
+  &__link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+  }
+
+  &__amount {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: 2px;
+    left: 34px;
+    width: 22px;
+    height: 22px;
+    background: $colorLightOrange;
+    border: 3px solid $colorWhite;
+    border-radius: 50%;
+    color: $colorWhite;
+  }
+
+  &__text-section {
+    display: flex;
+    flex-direction: column;
+    min-width: 58px;
+  }
+
+  &__title {
+    margin: 0;
+    font-weight: 300;
+    font-size: 12px;
+    color: $colorDarkBlue;
+  }
+
+  &__sum {
+    margin: 0;
+    font-weight: 600;
+  }
+}

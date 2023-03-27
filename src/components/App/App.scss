@@ -3,12 +3,13 @@
 .page {
   display: flex;
   flex-direction: column;
+  align-items: center;
   min-height: 100vh;
   min-width: 320px;
   font-family: 'Inter', 'Verdana', 'Tahoma', sans-serif;
   font-style: normal;
   font-weight: 400;
-  font-size: 0.875rem;
+  font-size: 14px;
   line-height: 150%;
   color: $colorBlack;
 }

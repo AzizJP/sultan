@@ -100,7 +100,7 @@ module.exports = {
     'react/display-name': [0],
     'react/self-closing-comp': [2],
 
-    'no-console': [2],
+    'no-console': [1],
     'no-empty': [2],
     'no-empty-pattern': [2],
     'no-multiple-empty-lines': [2, {max: 1}],
