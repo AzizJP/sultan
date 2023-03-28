@@ -1,0 +1,27 @@
+@import '../../styles/constants.scss';
+
+.breadcrumbs {
+  display: flex;
+  gap: 10px;
+  padding: 45px $paddingPhone 50px;
+  width: calc(100% - $paddingPhone * 2);
+  max-width: $maxWidth;
+
+  &__title {
+    margin: 0;
+    padding-right: 10px;
+    border-right: 1px dashed $colorDarkBlueTransparent2;
+    text-decoration: none;
+    font-weight: 300;
+    line-height: 120%;
+    color: $colorDarkBlueTransparent3;
+
+    &:first-child {
+      color: $colorDarkBlue;
+    }
+
+    &:last-child {
+      border: none;
+    }
+  }
+}

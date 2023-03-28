@@ -10,3 +10,7 @@ export interface Goods {
 export interface Breakpoint {
   isDesktop: boolean;
 }
+
+export interface CardName {
+  cardName: string;
+}

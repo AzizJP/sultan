@@ -1,16 +1,21 @@
 import {FC, memo, useCallback, useEffect} from 'react';
+import {Route, Routes} from 'react-router-dom';
 
-import {useAppDispatch} from '../../hooks/redux';
+import {useAppDispatch, useAppSelector} from '../../hooks/redux';
 import {setIsDesktop} from '../../store/reducers/breakpointSlice';
 import {DESKTOP_BREAKPOINT} from '../App/App.constants';
+import Breadcrumbs from '../Breadcrumbs/Breadcrumbs';
 
+import CardPage from '../CardPage/CardPage';
+import CatalogPage from '../CatalogPage/CatalogPage';
 import Footer from '../Footer/Footer';
 import Header from '../Header/Header';
-import Main from '../Main/Main';
+import OrderPage from '../OrderPage/OrderPage';
 
 import './App.scss';
 
 const App: FC = memo(() => {
+  const cardName = useAppSelector(state => state.cardReducer.cardName);
   const dispatch = useAppDispatch();
 
   const handleResize = useCallback(() => {
@@ -32,7 +37,12 @@ const App: FC = memo(() => {
   return (
     <div className="page">
       <Header />
-      <Main />
+      <Breadcrumbs cardName={cardName} />
+      <Routes>
+        <Route path="/" element={<CatalogPage />} />
+        <Route path="order" element={<OrderPage />} />
+        <Route path="catalog/:cardId" element={<CardPage />} />
+      </Routes>
       <Footer />
     </div>
   );
