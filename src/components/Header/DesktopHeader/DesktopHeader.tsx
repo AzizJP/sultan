@@ -10,6 +10,8 @@ import {ReactComponent as DownloadIcon} from '../../../images/download.svg';
 import {ReactComponent as LocationIcon} from '../../../images/location.svg';
 import {ReactComponent as LoupeIcon} from '../../../images/loupe-white.svg';
 import {ReactComponent as MailIcon} from '../../../images/mail.svg';
+import Button from '../../Button/Button';
+import Form from '../../Form/Form';
 
 import './DesktopHeader.scss';
 
@@ -49,16 +51,12 @@ const DesktopHeader: FC = memo(() => {
         <div className="header-desktop__wrapper header-desktop__wrapper_bottom">
           <LogoIcon className="header-desktop__logo" />
           <div className="header-desktop__search-group">
-            <button type="button" className="header-desktop__button">
-              <p className="header-desktop__button-text">Каталог</p>
-              <CatalogIcon className="header-desktop__button-icon" />
-            </button>
-            <form className="header-desktop__search">
-              <input type="text" placeholder="Поиск..." className="header-desktop__search-input" />
-              <button type="submit" className="header-desktop__search-button">
-                <LoupeIcon className="header-desktop__search-icon" />
-              </button>
-            </form>
+            <Button title="Каталог" width="192px" height="59px" gap="12px">
+              <CatalogIcon />
+            </Button>
+            <Form placeholder="Поиск..." width="243px" height="39px">
+              <LoupeIcon />
+            </Form>
           </div>
           <div className="header-desktop__info-group">
             <div className="phone-number">
@@ -71,10 +69,9 @@ const DesktopHeader: FC = memo(() => {
               </div>
               <span className="phone-number__photo" />
             </div>
-            <button type="button" className="header-desktop__button header-desktop__button_price">
-              <p className="header-desktop__button-text">Прайс-лист</p>
-              <DownloadIcon className="header-desktop__button-icon" />
-            </button>
+            <Button title="Прайс-лист" width="200px" height="59px" gap="12px">
+              <DownloadIcon />
+            </Button>
             <div className="basket">
               <Link to="/basket" className="basket__link">
                 <BasketIcon className="basket__icon" />

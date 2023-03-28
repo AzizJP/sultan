@@ -1,0 +1,47 @@
+@import '../../styles/constants.scss';
+
+.form {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 10px;
+  background-color: $colorLightGrey;
+  border-radius: 36px;
+
+  &__input {
+    padding: 10px;
+    border: none;
+    border-radius: 36px;
+    background-color: $colorLightGrey;
+    font-size: 12px;
+
+    &::placeholder {
+      color: $colorGreyTransparent;
+    }
+  }
+
+  &__button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 39px;
+    height: 39px;
+    background-color: $colorLightOrange;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+  }
+}
+
+@media screen and (min-width: $breakpointDesktop) {
+  .form {
+    &__button {
+      transition: background-color linear 0.2s;
+
+      &:hover {
+        background-color: $colorGreen;
+        transition: background-color linear 0.2s;
+      }
+    }
+  }
+}

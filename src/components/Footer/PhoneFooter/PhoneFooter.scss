@@ -1,0 +1,134 @@
+@import '../../../styles/constants.scss';
+
+$maxWidth: 485px;
+
+.footer-phone {
+  &__top-section {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    padding: $paddingPhone;
+    width: calc(100% - $paddingPhone * 2);
+    max-width: $maxWidth;
+  }
+
+  &__logo-group {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  &__description {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+  }
+
+  &__text {
+    margin: 0;
+    font-size: 12px;
+  }
+
+  &__email {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 15px;
+
+    &-text {
+      margin: 0;
+      font-size: 12px;
+    }
+  }
+
+  &__middle-section {
+    display: flex;
+    justify-content: space-between;
+    gap: 24px;
+    padding: $paddingPhone;
+    width: calc(100% - $paddingPhone * 2);
+    max-width: $maxWidth;
+  }
+
+  &__links {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    min-width: 126px;
+  }
+
+  &__title {
+    margin: 0;
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 150%;
+  }
+
+  &__bottom-section {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 10px $paddingPhone $paddingPhone;
+    width: calc(100% - $paddingPhone * 2);
+    max-width: $maxWidth;
+  }
+
+  &__address {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 15px;
+    gap: 25px;
+    font-style: normal;
+  }
+
+  &__contacts {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+  }
+
+  &__messengers {
+    display: flex;
+    flex-direction: column;
+    gap: 17px;
+
+    &-title {
+      margin: 0;
+      font-weight: 400;
+    }
+
+    &-logos {
+      display: flex;
+      gap: 10px;
+    }
+  }
+
+  &__bank-cards {
+    display: flex;
+    gap: 5px;
+  }
+}
+
+@media screen and (min-width: $breakpointDesktop) {
+  .footer-phone {
+    &__text {
+      font-size: 14px;
+    }
+
+    &__messengers {
+      gap: 15px;
+    }
+
+    &__button {
+      margin-top: 5px;
+      gap: 12px;
+      padding: 21.5px 50.5px;
+
+      &-text {
+        font-size: 14px;
+        line-height: 17px;
+      }
+    }
+  }
+}

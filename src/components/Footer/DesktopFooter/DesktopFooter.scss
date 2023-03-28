@@ -1,0 +1,36 @@
+@import '../../../styles/constants.scss';
+
+.footer-desktop {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  max-width: $maxWidth;
+
+  &__logo-group {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    max-width: 320px;
+  }
+
+  &__text {
+    margin: 0;
+    font-size: 16px;
+  }
+
+  &__email {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    margin-top: 30px;
+
+    &-form {
+      max-width: 270px;
+    }
+  }
+
+  &__links-group {
+    display: flex;
+    gap: 95px;
+  }
+}
