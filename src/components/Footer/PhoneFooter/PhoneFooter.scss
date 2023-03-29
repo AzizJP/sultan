@@ -15,6 +15,12 @@ $maxWidth: 485px;
   &__logo-group {
     display: flex;
     justify-content: space-between;
+
+    &-button {
+      width: 149px;
+      height: 40x;
+      gap: 5px;
+    }
   }
 
   &__description {

@@ -19,7 +19,7 @@ const PhoneFooter: FC = memo(() => {
       <section className="footer-phone__top-section">
         <div className="footer-phone__logo-group">
           <LogoIcon />
-          <Button title="Прайс-лист" width="149px" height="40px" gap="5px">
+          <Button title="Прайс-лист" buttonClassName="footer-phone__logo-group-button">
             <DowndloadIcon />
           </Button>
         </div>

@@ -3,16 +3,10 @@ import {FC, memo} from 'react';
 import './Button.scss';
 import {ButtonProps} from './Button.types';
 
-const Button: FC<ButtonProps> = memo(({title, width, height, gap, children}) => {
-  const buttonStyle = {
-    width,
-    height,
-    gap,
-  };
-
+const Button: FC<ButtonProps> = memo(({title, buttonClassName, titleClassName, onClick, children}) => {
   return (
-    <button type="button" className="button" style={buttonStyle}>
-      <p className="button__text">{title}</p>
+    <button type="button" className={`button ${buttonClassName}`} onClick={onClick}>
+      <p className={`button__text ${titleClassName}`}>{title}</p>
       {children}
     </button>
   );

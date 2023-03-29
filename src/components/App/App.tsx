@@ -2,12 +2,14 @@ import {FC, memo, useCallback, useEffect} from 'react';
 import {Route, Routes} from 'react-router-dom';
 
 import {useAppDispatch, useAppSelector} from '../../hooks/redux';
+
 import {setIsDesktop} from '../../store/reducers/breakpointSlice';
 import {DESKTOP_BREAKPOINT} from '../App/App.constants';
 import Breadcrumbs from '../Breadcrumbs/Breadcrumbs';
 
 import CardPage from '../CardPage/CardPage';
 import CatalogPage from '../CatalogPage/CatalogPage';
+import ComeBack from '../ComeBack/ComeBack';
 import Footer from '../Footer/Footer';
 import Header from '../Header/Header';
 import OrderPage from '../OrderPage/OrderPage';
@@ -15,7 +17,8 @@ import OrderPage from '../OrderPage/OrderPage';
 import './App.scss';
 
 const App: FC = memo(() => {
-  const cardName = useAppSelector(state => state.cardReducer.cardName);
+  const card = useAppSelector(state => state.cardReducer.card);
+  const isDesktop = useAppSelector(state => state.breakpointReducer.isDesktop);
   const dispatch = useAppDispatch();
 
   const handleResize = useCallback(() => {
@@ -37,7 +40,7 @@ const App: FC = memo(() => {
   return (
     <div className="page">
       <Header />
-      <Breadcrumbs cardName={cardName} />
+      {isDesktop ? <Breadcrumbs cardName={card.name} /> : <ComeBack />}
       <Routes>
         <Route path="/" element={<CatalogPage />} />
         <Route path="order" element={<OrderPage />} />

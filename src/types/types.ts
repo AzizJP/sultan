@@ -1,10 +1,10 @@
-export interface Basket {
-  amount: number;
-  sum: number;
-}
+import {CardTypes} from '../components/Card/Card.types';
 
-export interface Goods {
-  price: number;
+export interface Basket {
+  basket: Array<CardTypes>;
+}
+export interface Cards {
+  cards: Array<CardTypes>;
 }
 
 export interface Breakpoint {
@@ -13,4 +13,12 @@ export interface Breakpoint {
 
 export interface CardName {
   cardName: string;
+}
+
+export interface Card {
+  card: CardTypes;
+}
+
+export interface Counter {
+  count: number;
 }

@@ -1,4 +1,4 @@
-export interface Card {
+export interface CardTypes {
   url: string;
   name: string;
   dimensionType: string;
@@ -7,9 +7,10 @@ export interface Card {
   manufacturer: string;
   brand: string;
   description: string;
+  price: number;
   careType: string;
 }
 
 export interface CardProps {
-  card: Card;
+  card: CardTypes;
 }

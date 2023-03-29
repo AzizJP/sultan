@@ -1,25 +1,22 @@
 import {createSlice, PayloadAction} from '@reduxjs/toolkit';
 
-import {Basket, Goods} from '../../types/types';
+import {CardTypes} from '../../components/Card/Card.types';
+import {Basket} from '../../types/types';
 
 const initialState: Basket = {
-  amount: 0,
-  sum: 15000,
+  basket: JSON.parse(localStorage.getItem('basketArr')) || [],
 };
 
 export const basketSlice = createSlice({
   name: 'basket',
   initialState,
   reducers: {
-    setAmount(state, action: PayloadAction<Array<Goods>>) {
-      state.amount = action.payload.length;
-    },
-    setSum(state, action: PayloadAction<Array<Goods>>) {
-      state.sum = action.payload.reduce((acc, item) => acc + item.price, 0);
+    setBasket(state, action: PayloadAction<Array<CardTypes>>) {
+      state.basket = action.payload;
     },
   },
 });
 
-export const {setAmount, setSum} = basketSlice.actions;
+export const {setBasket} = basketSlice.actions;
 
 export default basketSlice.reducer;

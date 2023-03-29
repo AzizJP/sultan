@@ -1,4 +1,219 @@
-.main {
+@import '../../styles/constants.scss';
+
+.card-page {
   display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+  padding: 0 $paddingPhone 50px;
+  width: calc(100% - $paddingPhone * 2);
+  max-width: $maxWidth;
   flex-grow: 1;
+
+  &__image {
+    width: 256px;
+    height: 179px;
+    object-fit: contain;
+  }
+
+  &__info {
+    display: flex;
+    flex-grow: 1;
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+  }
+
+  &__presence {
+    margin: 0;
+    font-weight: 500;
+    line-height: 130%;
+    color: $colorGreen;
+  }
+
+  &__title {
+    margin: 0;
+    font-size: 16px;
+    line-height: 150%;
+    &-name {
+      font-weight: 400;
+    }
+    &-brand {
+      font-weight: 800;
+    }
+  }
+
+  &__dimension {
+    display: flex;
+    margin: 0;
+    gap: 5px;
+  }
+
+  &__buy {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    column-gap: 27px;
+    row-gap: 20px;
+  }
+
+  &__price {
+    margin: 0;
+    font-weight: 800;
+    font-size: 20px;
+    line-height: 130%;
+  }
+
+  &__counter {
+    display: flex;
+    align-items: center;
+    gap: 19px;
+    font-weight: 300;
+    font-size: 12px;
+    line-height: 15px;
+    text-align: center;
+
+    &-text {
+      font-weight: 500;
+      line-height: 130%;
+      color: $colorDarkBlue;
+    }
+
+    &-button {
+      padding: 0;
+      border: none;
+      width: 34px;
+      height: 23px;
+      background: linear-gradient(90deg, rgba(255, 198, 80, 0.3) 0%, rgba(254, 202, 110, 0.3) 97.25%);
+      border-radius: 1000px;
+    }
+  }
+
+  &__to-basket {
+    width: 184px;
+    height: 59px;
+    gap: 12px;
+
+    &-title {
+      font-size: 14px;
+      line-height: 17px;
+    }
+  }
+
+  &__links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  &__share-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    width: 59px;
+    height: 59px;
+    border: none;
+    background: #ffffff;
+    box-shadow: 0px 15px 70px -11px rgba(43, 28, 1, 0.04);
+    border-radius: 10px;
+  }
+
+  &__text {
+    margin: 0;
+    width: 100%;
+    max-width: calc(316px - 22.5px * 2);
+    text-align: center;
+    padding: 20.5px 22.5px;
+    background: #ffffff;
+    box-shadow: 0px 15px 70px -11px rgba(43, 28, 1, 0.04);
+    border-radius: 10px;
+    font-size: 12px;
+    line-height: 150%;
+    text-align: center;
+    color: $colorDarkBlue;
+  }
+
+  &__button {
+    width: 100%;
+    max-width: 290px;
+    height: 77px;
+    gap: 10px;
+    background: #ffffff;
+    box-shadow: 0px 15px 70px -11px rgba(43, 28, 1, 0.04);
+    border-radius: 10px;
+
+    &-title {
+      font-weight: 400;
+      font-size: 12px;
+      line-height: 150%;
+      text-align: center;
+      color: #3f4e65;
+    }
+
+    &-icon {
+      & path {
+        fill: $colorBlack;
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 715px) {
+  .card-page {
+    &__image {
+      width: 400px;
+      height: auto;
+    }
+
+    &__info {
+      align-items: center;
+    }
+
+    &__links {
+      justify-content: center;
+      width: 100%;
+    }
+  }
+}
+
+@media screen and (min-width: $breakpointDesktop) {
+  .card-page {
+    flex-direction: row;
+    align-items: start;
+    gap: 40px;
+    padding-bottom: 60px;
+
+    &__image {
+      width: 664px;
+    }
+
+    &__info {
+      align-items: start;
+      padding-top: 35px;
+    }
+
+    &__buy {
+      padding: 5px 0 10px;
+      gap: 40px;
+    }
+
+    &__links {
+      justify-content: start;
+    }
+
+    &__share-button {
+      width: 77px;
+      height: 77px;
+    }
+
+    &__text {
+      max-width: calc(316px - 35.5px * 2);
+      padding: 20.5px 35.5px;
+    }
+
+    &__button {
+      max-width: 186px;
+    }
+  }
 }

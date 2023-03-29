@@ -1,4 +1,9 @@
-.main {
+@import '../../styles/constants.scss';
+
+.catalog-page {
   display: flex;
+  justify-content: space-between;
   flex-grow: 1;
+  width: 100%;
+  max-width: $maxWidth;
 }

@@ -48,7 +48,7 @@ const DesktopFooter: FC = memo(() => {
           </div>
           <div className="footer-phone__links">
             <h2 className="footer-phone__title">Скачать прайс-лист:</h2>
-            <Button title="Прайс-лист" width="214px" height="59px" gap="12px">
+            <Button title="Прайс-лист" buttonClassName="footer-desktop__button">
               <DowndloadIcon />
             </Button>
             <div className="footer-phone__messengers">

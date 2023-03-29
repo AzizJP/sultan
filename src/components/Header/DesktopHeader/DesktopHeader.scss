@@ -36,12 +36,24 @@
     display: flex;
     align-items: center;
     gap: 15px;
+
+    &-button {
+      width: 192px;
+      height: 59px;
+      gap: 12px;
+    }
   }
 
   &__info-group {
     display: flex;
     align-items: center;
     gap: 50px;
+
+    &-button {
+      width: 200px;
+      height: 59px;
+      gap: 12px;
+    }
   }
 }
 
@@ -192,7 +204,6 @@
   &__text-section {
     display: flex;
     flex-direction: column;
-    min-width: 58px;
   }
 
   &__title {
@@ -205,5 +216,26 @@
   &__sum {
     margin: 0;
     font-weight: 600;
+    width: 60px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+}
+
+@media screen and (min-width: $breakpointDesktop) {
+  .basket {
+    &__amount {
+      transition: background-color linear 0.2s;
+    }
+
+    &__link {
+      &:hover {
+        .basket__amount {
+          background-color: $colorGreen;
+          transition: background-color linear 0.2s;
+        }
+      }
+    }
   }
 }

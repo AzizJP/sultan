@@ -10,14 +10,16 @@ import {ReactComponent as DownloadIcon} from '../../../images/download.svg';
 import {ReactComponent as LocationIcon} from '../../../images/location.svg';
 import {ReactComponent as LoupeIcon} from '../../../images/loupe-white.svg';
 import {ReactComponent as MailIcon} from '../../../images/mail.svg';
+import {changePointToComma} from '../../../utils/helpers';
 import Button from '../../Button/Button';
 import Form from '../../Form/Form';
 
 import './DesktopHeader.scss';
 
 const DesktopHeader: FC = memo(() => {
-  const amount = useAppSelector(state => state.basketReducer.amount);
-  const sum = useAppSelector(state => state.basketReducer.sum);
+  const basket = useAppSelector(state => state.basketReducer.basket);
+  const amount = basket.length;
+  const sum = basket.reduce((acc, item) => acc + item.price, 0).toFixed(1);
 
   return (
     <>
@@ -51,7 +53,7 @@ const DesktopHeader: FC = memo(() => {
         <div className="header-desktop__wrapper header-desktop__wrapper_bottom">
           <LogoIcon className="header-desktop__logo" />
           <div className="header-desktop__search-group">
-            <Button title="Каталог" width="192px" height="59px" gap="12px">
+            <Button title="Каталог" buttonClassName="header-desktop__search-group-button">
               <CatalogIcon />
             </Button>
             <Form placeholder="Поиск..." width="243px" height="39px">
@@ -69,17 +71,17 @@ const DesktopHeader: FC = memo(() => {
               </div>
               <span className="phone-number__photo" />
             </div>
-            <Button title="Прайс-лист" width="200px" height="59px" gap="12px">
+            <Button title="Прайс-лист" buttonClassName="header-desktop__info-group-button">
               <DownloadIcon />
             </Button>
             <div className="basket">
-              <Link to="/basket" className="basket__link">
+              <Link to="/order" className="basket__link">
                 <BasketIcon className="basket__icon" />
                 <span className="basket__amount">{amount}</span>
               </Link>
               <div className="basket__text-section">
                 <p className="basket__title">Корзина</p>
-                <p className="basket__sum">{`${sum} ₸`}</p>
+                <p className="basket__sum">{`${changePointToComma(sum)} ₸`}</p>
               </div>
             </div>
           </div>

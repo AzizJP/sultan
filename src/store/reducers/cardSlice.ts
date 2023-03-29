@@ -1,21 +1,33 @@
 import {createSlice, PayloadAction} from '@reduxjs/toolkit';
 
-import {CardName} from '../../types/types';
+import {CardTypes} from '../../components/Card/Card.types';
+import {Card} from '../../types/types';
 
-const initialState: CardName = {
-  cardName: '',
+const initialState: Card = {
+  card: JSON.parse(localStorage.getItem('currentCard')) || {
+    url: '',
+    name: '',
+    dimensionType: '',
+    dimension: '',
+    barcode: '',
+    manufacturer: '',
+    brand: '',
+    description: '',
+    price: 0,
+    careType: '',
+  },
 };
 
 export const cardSlice = createSlice({
-  name: 'cardName',
+  name: 'cards',
   initialState,
   reducers: {
-    setCardName(state, action: PayloadAction<string>) {
-      state.cardName = action.payload;
+    setCard(state, action: PayloadAction<CardTypes>) {
+      state.card = action.payload;
     },
   },
 });
 
-export const {setCardName} = cardSlice.actions;
+export const {setCard} = cardSlice.actions;
 
 export default cardSlice.reducer;

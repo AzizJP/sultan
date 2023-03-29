@@ -1,6 +1,8 @@
 import {FC, memo} from 'react';
 import {Link} from 'react-router-dom';
 
+import {useAppSelector} from '../../../hooks/redux';
+
 import {ReactComponent as BusketIcon} from '../../../images/basket.svg';
 import {ReactComponent as CatalogIcon} from '../../../images/catalog.svg';
 import {ReactComponent as LogoIcon} from '../../../images/logo.svg';
@@ -10,6 +12,7 @@ import {ReactComponent as MenuIcon} from '../../../images/menu.svg';
 import './PhoneHeader.scss';
 
 const PhoneHeader: FC = memo(() => {
+  const amount = useAppSelector(state => state.basketReducer.basket.length);
   return (
     <>
       <section className="header-phone__top-section">
@@ -17,8 +20,8 @@ const PhoneHeader: FC = memo(() => {
           <MenuIcon className="header-phone__menu-icon" />
         </button>
         <LogoIcon className="header-phone__logo" />
-        <Link to="/busket" className="header-phone__busket">
-          <span className="header-phone__busket-items-amount">3</span>
+        <Link to="/order" className="header-phone__busket">
+          <span className="header-phone__busket-items-amount">{amount}</span>
           <BusketIcon className="header-phone__busket-icon" />
         </Link>
       </section>
