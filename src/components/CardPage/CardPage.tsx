@@ -11,6 +11,7 @@ import {ReactComponent as ShareIcon} from '../../images/share.svg';
 
 import {setBasket} from '../../store/reducers/basketSlice';
 import {setIsOpenDescription, setIsOpenSpecification} from '../../store/reducers/cardInfoSlice';
+import {decrement, increment, setCount} from '../../store/reducers/counterSlice';
 import {changePointToComma} from '../../utils/helpers';
 import Button from '../Button/Button';
 import Counter from '../Counter/Counter';
@@ -28,6 +29,7 @@ const CardPage: FC = memo(() => {
 
   const handleAddCard = useCallback(() => {
     const newArray = [...basket];
+    dispatch(setCount(1));
     for (let i = 1; i <= count; i++) {
       newArray.push(currentCard);
     }
@@ -42,6 +44,14 @@ const CardPage: FC = memo(() => {
   const toggleSpecificationOpen = useCallback(() => {
     dispatch(setIsOpenSpecification(!isOpenSpecification));
   }, [dispatch, isOpenSpecification]);
+
+  const handleIncrement = useCallback(() => {
+    dispatch(increment(1));
+  }, [dispatch]);
+
+  const handleDecrement = useCallback(() => {
+    dispatch(decrement(1));
+  }, [dispatch]);
 
   return (
     <section className="card-page">
@@ -64,7 +74,7 @@ const CardPage: FC = memo(() => {
         ) : null}
         <div className="card-page__buy">
           <p className="card-page__price">{`${changePointToComma(currentCard.price)} ₸`}</p>
-          <Counter count={count} />
+          <Counter count={count} onIncrement={handleIncrement} onDecrement={handleDecrement} />
           <Button
             title="В корзину"
             buttonClassName="card-page__to-basket"

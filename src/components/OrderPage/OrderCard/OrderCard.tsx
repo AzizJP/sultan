@@ -1,4 +1,5 @@
 import {FC, memo, useCallback} from 'react';
+import {Link} from 'react-router-dom';
 
 import {useAppDispatch, useAppSelector} from '../../../hooks/redux';
 
@@ -7,6 +8,7 @@ import {ReactComponent as BoxIcon} from '../../../images/box.svg';
 import {ReactComponent as DeleteIcon} from '../../../images/delete.svg';
 
 import {setBasket} from '../../../store/reducers/basketSlice';
+import {setCard} from '../../../store/reducers/cardSlice';
 
 import {changePointToComma} from '../../../utils/helpers';
 import {CardProps, CardTypes} from '../../Card/Card.types';
@@ -19,6 +21,11 @@ const OrderCard: FC<CardProps> = memo(({card}) => {
   const basket = useAppSelector(state => state.basketReducer.basket);
 
   const cardAmount = basket.filter(i => i.barcode === card.barcode).length;
+
+  const handleCardClick = useCallback(() => {
+    dispatch(setCard(card));
+    localStorage.setItem('currentCard', JSON.stringify(card));
+  }, [card, dispatch]);
 
   const handleIncrement = useCallback(() => {
     const newArray = [...basket];
@@ -62,7 +69,9 @@ const OrderCard: FC<CardProps> = memo(({card}) => {
             )}
             <p className="card__dimension-value">{`${card.dimension} ${card.dimensionType}`}</p>
           </div>
-          <h2 className="order-card__title">{`${card.brand} ${card.name}`}</h2>
+          <Link to={`/catalog/${card.barcode}`} onClick={handleCardClick} className="order-card__title">
+            {`${card.brand} ${card.name}`}
+          </Link>
           <p className="order-card__description-text">{card.description}</p>
         </div>
       </div>
