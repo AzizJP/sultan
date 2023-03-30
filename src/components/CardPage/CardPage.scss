@@ -284,6 +284,12 @@
     &__share-button {
       width: 77px;
       height: 77px;
+      transition: background-color linear 0.2s;
+
+      &:hover {
+        background-color: $colorGreen;
+        transition: background-color linear 0.2s;
+      }
     }
 
     &__text {

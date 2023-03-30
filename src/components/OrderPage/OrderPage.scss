@@ -1,4 +1,98 @@
-.main {
+@import '../../styles/constants.scss';
+
+.order-page {
   display: flex;
+  flex-direction: column;
   flex-grow: 1;
+  padding: 0 $paddingPhone 50px;
+  width: calc(100% - $paddingPhone * 2);
+  max-width: $maxWidth;
+
+  &__title {
+    position: relative;
+    align-self: start;
+    margin: 0;
+    margin-bottom: 40px;
+    width: 100%;
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 120%;
+    text-transform: uppercase;
+    color: #111111;
+
+    &:after {
+      content: '';
+      position: absolute;
+      bottom: -20px;
+      left: 0;
+      width: 100%;
+      border-top: 1px dashed $colorDarkBlueTransparent2;
+    }
+  }
+
+  &__cards {
+    display: flex;
+    flex-direction: column;
+    gap: 45px;
+  }
+
+  &__ordering {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 25px;
+    margin-top: 45px;
+  }
+
+  &__sum {
+    margin: 0;
+    font-weight: 700;
+    font-size: 30px;
+    line-height: 130%;
+  }
+
+  &__button {
+    width: 290px;
+    height: 80px;
+  }
+
+  &__title {
+    font-size: 14px;
+    line-height: 17px;
+  }
+}
+
+@media screen and (min-width: 710px) {
+  .order-page {
+    &__ordering {
+      flex-direction: row-reverse;
+      justify-content: space-between;
+    }
+
+    &__button {
+      width: 192px;
+      height: 59px;
+    }
+  }
+}
+
+@media screen and (min-width: $breakpointDesktop) {
+  .order-page {
+    &__title {
+      margin-bottom: 100px;
+      font-size: 40px;
+
+      &:after {
+        bottom: -50px;
+      }
+    }
+
+    &__cards {
+      gap: 100px;
+    }
+
+    &__ordering {
+      margin-top: 100px;
+    }
+  }
 }

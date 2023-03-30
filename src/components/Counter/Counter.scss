@@ -1,0 +1,41 @@
+@import '../../styles/constants.scss';
+
+.counter {
+  display: flex;
+  align-items: center;
+  gap: 19px;
+  font-weight: 300;
+  font-size: 12px;
+  line-height: 15px;
+  text-align: center;
+
+  &__text {
+    font-weight: 500;
+    line-height: 130%;
+    color: $colorDarkBlue;
+    width: 16px;
+  }
+
+  &__button {
+    padding: 0;
+    border: none;
+    width: 34px;
+    height: 23px;
+    background: linear-gradient(90deg, rgba(255, 198, 80, 0.3) 0%, rgba(254, 202, 110, 0.3) 97.25%);
+    border-radius: 1000px;
+    cursor: pointer;
+  }
+}
+
+@media screen and (min-width: $breakpointDesktop) {
+  .counter {
+    &__button {
+      transition: background-color linear 0.2s;
+
+      &:hover {
+        background-color: $colorGreen;
+        transition: background-color linear 0.2s;
+      }
+    }
+  }
+}

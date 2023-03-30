@@ -39,13 +39,15 @@ $paddingLRCardDesktop: 21px;
   }
 
   &__link {
+    -webkit-line-clamp: 2;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
     text-decoration: none;
     color: $colorBlack;
     font-size: 16px;
     line-height: 130%;
     max-height: 63px;
     overflow: hidden;
-    text-overflow: ellipsis;
 
     &-brand {
       font-weight: 700;

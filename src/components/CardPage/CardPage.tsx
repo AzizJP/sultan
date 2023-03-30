@@ -11,9 +11,9 @@ import {ReactComponent as ShareIcon} from '../../images/share.svg';
 
 import {setBasket} from '../../store/reducers/basketSlice';
 import {setIsOpenDescription, setIsOpenSpecification} from '../../store/reducers/cardInfoSlice';
-import {decrement, increment} from '../../store/reducers/counterSlice';
 import {changePointToComma} from '../../utils/helpers';
 import Button from '../Button/Button';
+import Counter from '../Counter/Counter';
 
 import './CardPage.scss';
 
@@ -64,15 +64,7 @@ const CardPage: FC = memo(() => {
         ) : null}
         <div className="card-page__buy">
           <p className="card-page__price">{`${changePointToComma(currentCard.price)} ₸`}</p>
-          <div className="card-page__counter">
-            <button onClick={() => dispatch(decrement(1))} className="card-page__counter-button">
-              -
-            </button>
-            <span className="card-page__counter-text">{count}</span>
-            <button onClick={() => dispatch(increment(1))} className="card-page__counter-button">
-              +
-            </button>
-          </div>
+          <Counter count={count} />
           <Button
             title="В корзину"
             buttonClassName="card-page__to-basket"
