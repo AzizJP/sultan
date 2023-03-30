@@ -22,3 +22,8 @@ export interface Card {
 export interface Counter {
   count: number;
 }
+
+export interface CardInfo {
+  isOpenDescription: boolean;
+  isOpenSpecification: boolean;
+}

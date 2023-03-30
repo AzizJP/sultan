@@ -86,6 +86,7 @@
       height: 23px;
       background: linear-gradient(90deg, rgba(255, 198, 80, 0.3) 0%, rgba(254, 202, 110, 0.3) 97.25%);
       border-radius: 1000px;
+      cursor: pointer;
     }
   }
 
@@ -117,6 +118,7 @@
     background: #ffffff;
     box-shadow: 0px 15px 70px -11px rgba(43, 28, 1, 0.04);
     border-radius: 10px;
+    cursor: pointer;
   }
 
   &__text {
@@ -142,6 +144,7 @@
     background: #ffffff;
     box-shadow: 0px 15px 70px -11px rgba(43, 28, 1, 0.04);
     border-radius: 10px;
+    cursor: pointer;
 
     &-title {
       font-weight: 400;
@@ -156,6 +159,72 @@
         fill: $colorBlack;
       }
     }
+  }
+
+  &__card-info {
+    padding: 25px 0 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+
+    &_specification {
+      padding: 5px 0 0;
+    }
+  }
+
+  &__card-text {
+    margin: 0;
+    font-weight: 300;
+    color: $colorDarkBlue;
+
+    &-bold {
+      font-weight: 500;
+      color: $colorBlack;
+    }
+  }
+
+  &__description {
+    margin: 0;
+    padding-top: 5px;
+    font-weight: 300;
+    font-size: 12px;
+    line-height: 150%;
+    max-width: 611px;
+    color: $colorDarkBlue;
+  }
+
+  &__description-button {
+    align-self: start;
+    align-items: center;
+    background-color: $colorWhite;
+    gap: 5px;
+
+    &-title {
+      margin: 0;
+      font-weight: 500;
+      font-size: 16px;
+      line-height: 150%;
+      color: $colorBlack;
+    }
+  }
+
+  &__specification-button {
+    position: relative;
+    margin-top: 30px;
+
+    &:before {
+      content: '';
+      position: absolute;
+      top: -20px;
+      left: 0;
+      width: 270px;
+      border-bottom: 1px dashed #3f4e65;
+      opacity: 0.3;
+    }
+  }
+
+  &__rotate {
+    transform: rotateX(180deg);
   }
 }
 
@@ -173,6 +242,16 @@
     &__links {
       justify-content: center;
       width: 100%;
+    }
+
+    &__description-button {
+      align-self: center;
+    }
+
+    &__specification-button {
+      &:before {
+        left: -50%;
+      }
     }
   }
 }
@@ -214,6 +293,30 @@
 
     &__button {
       max-width: 186px;
+    }
+
+    &__description-button {
+      align-self: start;
+
+      &:hover {
+        background-color: $colorWhite;
+        transition: none;
+
+        .card-page__description-button-title {
+          text-shadow: $colorGrey 1px 0 3px;
+          transition: text-shadow linear 0.2s;
+        }
+      }
+
+      &-title {
+        transition: text-shadow linear 0.2s;
+      }
+    }
+
+    &__specification-button {
+      &:before {
+        left: 0;
+      }
     }
   }
 }

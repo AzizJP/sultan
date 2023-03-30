@@ -2,6 +2,7 @@ import {combineReducers, configureStore} from '@reduxjs/toolkit';
 
 import basketReducer from './reducers/basketSlice';
 import breakpointReducer from './reducers/breakpointSlice';
+import cardInfoReducer from './reducers/cardInfoSlice';
 import cardReducer from './reducers/cardSlice';
 import cardsReducer from './reducers/cardsSlice';
 import counterReducer from './reducers/counterSlice';
@@ -12,6 +13,7 @@ const rootReducer = combineReducers({
   cardsReducer,
   cardReducer,
   counterReducer,
+  cardInfoReducer,
 });
 
 export const setupStore = () => {

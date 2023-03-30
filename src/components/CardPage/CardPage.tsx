@@ -2,6 +2,7 @@ import {FC, memo, useCallback} from 'react';
 
 import {useAppDispatch, useAppSelector} from '../../hooks/redux';
 
+import {ReactComponent as ArrowTriangleIcon} from '../../images/arrow-triangle.svg';
 import {ReactComponent as BottleIcon} from '../../images/bottle.svg';
 import {ReactComponent as BoxIcon} from '../../images/box.svg';
 import {ReactComponent as BasketIcon} from '../../images/card-basket.svg';
@@ -9,6 +10,7 @@ import {ReactComponent as DownloadIcon} from '../../images/download.svg';
 import {ReactComponent as ShareIcon} from '../../images/share.svg';
 
 import {setBasket} from '../../store/reducers/basketSlice';
+import {setIsOpenDescription, setIsOpenSpecification} from '../../store/reducers/cardInfoSlice';
 import {decrement, increment} from '../../store/reducers/counterSlice';
 import {changePointToComma} from '../../utils/helpers';
 import Button from '../Button/Button';
@@ -21,12 +23,25 @@ const CardPage: FC = memo(() => {
   const isDesktop = useAppSelector(state => state.breakpointReducer.isDesktop);
   const currentCard = useAppSelector(state => state.cardReducer.card);
   const count = useAppSelector(state => state.counterReducer.count);
+  const isOpenDescription = useAppSelector(state => state.cardInfoReducer.isOpenDescription);
+  const isOpenSpecification = useAppSelector(state => state.cardInfoReducer.isOpenSpecification);
 
   const handleAddCard = useCallback(() => {
-    const newArray = [...basket, currentCard];
+    const newArray = [...basket];
+    for (let i = 1; i <= count; i++) {
+      newArray.push(currentCard);
+    }
     dispatch(setBasket(newArray));
     localStorage.setItem('basketArr', JSON.stringify(newArray));
-  }, [basket, currentCard, dispatch]);
+  }, [basket, count, currentCard, dispatch]);
+
+  const toggleDescriptionOpen = useCallback(() => {
+    dispatch(setIsOpenDescription(!isOpenDescription));
+  }, [dispatch, isOpenDescription]);
+
+  const toggleSpecificationOpen = useCallback(() => {
+    dispatch(setIsOpenSpecification(!isOpenSpecification));
+  }, [dispatch, isOpenSpecification]);
 
   return (
     <section className="card-page">
@@ -83,6 +98,81 @@ const CardPage: FC = memo(() => {
             <DownloadIcon className="card-page__button-icon" />
           </Button>
         </div>
+        <div className="card-page__card-info">
+          <p className="card-page__card-text">
+            Производитель: <span className="card__text-bold">{currentCard.manufacturer}</span>
+          </p>
+          <p className="card-page__card-text">
+            Бренд: <span className="card-page__card-text-bold">{currentCard.brand}</span>
+          </p>
+          <p className="card-page__card-text">
+            Артикул: <span className="card-page__card-text-bold">{currentCard.barcode.slice(0, 6)}</span>
+          </p>
+          <p className="card-page__card-text">
+            Штрихкод: <span className="card-page__card-text-bold">{currentCard.barcode}</span>
+          </p>
+        </div>
+        <Button
+          title="Описание"
+          buttonClassName="card-page__description-button"
+          titleClassName="card-page__description-button-title"
+          onClick={toggleDescriptionOpen}
+        >
+          <ArrowTriangleIcon
+            className={`card-page__description-button-icon ${isOpenDescription ? 'card-page__rotate' : ''}`}
+          />
+        </Button>
+        {isOpenDescription ? <p className="card-page__description">{currentCard.description}</p> : null}
+        <Button
+          title="Характеристики"
+          buttonClassName="card-page__description-button card-page__specification-button"
+          titleClassName="card-page__description-button-title"
+          onClick={toggleSpecificationOpen}
+        >
+          <ArrowTriangleIcon
+            className={`card-page__description-button-icon ${isOpenSpecification ? 'card-page__rotate' : ''}`}
+          />
+        </Button>
+        {isOpenSpecification ? (
+          <div className="card-page__card-info card-page__card-info_specification">
+            <p className="card-page__card-text">
+              {`Назначение: `}
+              <span className="card__text-bold">{currentCard.manufacturer}</span>
+            </p>
+            <p className="card-page__card-text">
+              {`Тип: `}
+              <span className="card-page__card-text-bold">{currentCard.brand}</span>
+            </p>
+            <p className="card-page__card-text">
+              {`Производитель: `}
+              <span className="card-page__card-text-bold">{currentCard.manufacturer}</span>
+            </p>
+            <p className="card-page__card-text">
+              {`Бренд: `}
+              <span className="card-page__card-text-bold">{currentCard.brand}</span>
+            </p>
+            <p className="card-page__card-text">
+              {`Артикул: `}
+              <span className="card-page__card-text-bold">{currentCard.barcode.slice(0, 6)}</span>
+            </p>
+            <p className="card-page__card-text">
+              {`Штрихкод: `}
+              <span className="card-page__card-text-bold">{currentCard.barcode}</span>
+            </p>
+            <p className="card-page__card-text">
+              {`Вес: `}
+              <span className="card-page__card-text-bold">{`${currentCard.dimension} ${currentCard.dimensionType}`}</span>
+            </p>
+            <p className="card-page__card-text">
+              {`Объем: `}
+              <span className="card-page__card-text-bold">{`${currentCard.dimension} ${currentCard.dimensionType}`}</span>
+            </p>
+            <p className="card-page__card-text">
+              {`Кол-во в коробке: `}
+              <span className="card-page__card-text-bold">{`${currentCard.dimension} ${currentCard.dimensionType}`}</span>
+            </p>
+          </div>
+        ) : null}
       </div>
     </section>
   );
