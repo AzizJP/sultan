@@ -17,7 +17,7 @@ const Breadcrumbs: FC<BreadcrumbsProps> = memo(({cardName}) => {
       </Link>
       {location.pathname === '/' ? (
         <Link to="/" className="breadcrumbs__title">
-          Каталог
+          Косметика и гигиена
         </Link>
       ) : location.pathname === '/order' ? (
         <Link to="/order" className="breadcrumbs__title">

@@ -2,8 +2,36 @@
 
 .catalog-page {
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
   flex-grow: 1;
-  width: 100%;
+  padding: 0 $paddingPhone 50px;
+  width: calc(100% - $paddingPhone * 2);
   max-width: $maxWidth;
+
+  &__title {
+    margin: 0;
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 120%;
+    text-transform: uppercase;
+  }
+
+  &__main {
+    display: flex;
+    justify-content: center;
+  }
+}
+
+@media screen and (min-width: $breakpointDesktop) {
+  .catalog-page {
+    padding: 0 0 100px;
+
+    &__title {
+      font-size: 40px;
+    }
+
+    &__main {
+      justify-content: space-between;
+    }
+  }
 }

@@ -1,0 +1,25 @@
+@import '../../../styles/constants.scss';
+
+.cards {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 45px;
+  width: 100%;
+  max-width: 1020px;
+
+  &__wrapper {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+    justify-items: center;
+    gap: 21px;
+    width: 100%;
+    max-width: 1020px;
+  }
+}
+
+@media screen and (min-width: $breakpointDesktop) {
+  .cards {
+    gap: 50px;
+  }
+}

@@ -8,7 +8,7 @@ export interface CardTypes {
   brand: string;
   description: string;
   price: number;
-  careType: string;
+  careType: Array<string>;
 }
 
 export interface CardProps {

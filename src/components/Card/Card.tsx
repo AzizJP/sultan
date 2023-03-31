@@ -11,14 +11,41 @@ import {setBasket} from '../../store/reducers/basketSlice';
 import {setCard} from '../../store/reducers/cardSlice';
 import {changePointToComma} from '../../utils/helpers';
 import Button from '../Button/Button';
+import Counter from '../Counter/Counter';
 
-import {CardProps} from './Card.types';
+import {CardProps, CardTypes} from './Card.types';
 
 import './Card.scss';
 
 const Card: FC<CardProps> = memo(({card}) => {
   const dispatch = useAppDispatch();
   const basket = useAppSelector(state => state.basketReducer.basket);
+
+  const cardAmount = basket.filter(i => i.barcode === card.barcode).length;
+
+  const cardsInBasket: Array<CardTypes> = [];
+  basket.map(i => {
+    if (i.barcode === card.barcode) {
+      cardsInBasket.push(i);
+    }
+  });
+
+  const isCardInBasket = cardsInBasket.length > 0;
+
+  const handleIncrement = useCallback(() => {
+    const newArray = [...basket];
+    newArray.push(card);
+    dispatch(setBasket(newArray));
+    localStorage.setItem('basketArr', JSON.stringify(newArray));
+  }, [basket, card, dispatch]);
+
+  const handleDecrement = useCallback(() => {
+    const newArray = [...basket];
+    const taskIndex = newArray.findIndex(el => el.barcode === card.barcode);
+    newArray.splice(taskIndex, 1);
+    dispatch(setBasket(newArray));
+    localStorage.setItem('basketArr', JSON.stringify(newArray));
+  }, [basket, card, dispatch]);
 
   const handleCardClick = useCallback(() => {
     dispatch(setCard(card));
@@ -60,14 +87,20 @@ const Card: FC<CardProps> = memo(({card}) => {
       </div>
       <div className="card__buy">
         <p className="card__price">{`${changePointToComma(card.price)} ₸`}</p>
-        <Button
-          title="В КОРЗИНУ"
-          buttonClassName="card__button"
-          titleClassName="card__button-title"
-          onClick={handleAddCard}
-        >
-          <BasketIcon />
-        </Button>
+        {isCardInBasket ? (
+          <div className="card__counter">
+            <Counter onIncrement={handleIncrement} onDecrement={handleDecrement} count={cardAmount} />
+          </div>
+        ) : (
+          <Button
+            title="В КОРЗИНУ"
+            buttonClassName="card__button"
+            titleClassName="card__button-title"
+            onClick={handleAddCard}
+          >
+            <BasketIcon />
+          </Button>
+        )}
       </div>
     </article>
   );

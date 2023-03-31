@@ -14,7 +14,7 @@ const initialState: Card = {
     brand: '',
     description: '',
     price: 0,
-    careType: '',
+    careType: [],
   },
 };
 

@@ -3,6 +3,7 @@ import {CardTypes} from '../components/Card/Card.types';
 export interface Basket {
   basket: Array<CardTypes>;
 }
+
 export interface Cards {
   cards: Array<CardTypes>;
 }
@@ -25,6 +26,10 @@ export interface Card {
 
 export interface Counter {
   count: number;
+}
+
+export interface PageCounter {
+  page: number;
 }
 
 export interface CardInfo {

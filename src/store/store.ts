@@ -6,6 +6,7 @@ import cardInfoReducer from './reducers/cardInfoSlice';
 import cardReducer from './reducers/cardSlice';
 import cardsReducer from './reducers/cardsSlice';
 import counterReducer from './reducers/counterSlice';
+import pageReducer from './reducers/pageSlice';
 import popupReducer from './reducers/popupSlice';
 
 const rootReducer = combineReducers({
@@ -16,6 +17,7 @@ const rootReducer = combineReducers({
   counterReducer,
   cardInfoReducer,
   popupReducer,
+  pageReducer,
 });
 
 export const setupStore = () => {
