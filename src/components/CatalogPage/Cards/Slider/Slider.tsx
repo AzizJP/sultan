@@ -1,4 +1,4 @@
-import {FC, memo, useCallback} from 'react';
+import {FC, memo, useCallback, useState} from 'react';
 
 import {useAppDispatch, useAppSelector} from '../../../../hooks/redux';
 
@@ -11,31 +11,54 @@ import {SliderProps} from './Slider.types';
 import './Slider.scss';
 
 const Slider: FC<SliderProps> = memo(({pagesAmount}) => {
+  const [firstIndex, setFirstIndex] = useState<number>(JSON.parse(localStorage.getItem('firstIndex')) || 0);
   const dispatch = useAppDispatch();
   const page = useAppSelector(state => state.pageReducer.page);
-  const sliderNumbers = [];
 
+  const sliderNumbers = [];
   for (let i = 1; i <= pagesAmount; ++i) {
     sliderNumbers.push(i);
   }
+  const lastIndex = firstIndex + 5;
+  const visibleNumbers = sliderNumbers.slice(firstIndex, lastIndex);
 
   const incPage = useCallback(() => {
+    if (page === sliderNumbers.length) return;
+    if (page === lastIndex - 1 && lastIndex <= sliderNumbers.length - 2) {
+      setFirstIndex(prev => prev + 3);
+      localStorage.setItem('firstIndex', JSON.stringify(firstIndex + 3));
+    }
     dispatch(incrementPage(1));
     localStorage.setItem('catalogPage', JSON.stringify(page + 1));
-  }, [dispatch, page]);
+    window.scrollTo(0, 0);
+  }, [dispatch, firstIndex, lastIndex, page, sliderNumbers.length]);
 
   const decPage = useCallback(() => {
     if (page === 1) return;
+    if (page === firstIndex + 2 && firstIndex >= 3) {
+      setFirstIndex(prev => prev - 3);
+      localStorage.setItem('firstIndex', JSON.stringify(firstIndex - 3));
+    }
     dispatch(decrementPage(1));
     localStorage.setItem('catalogPage', JSON.stringify(page - 1));
-  }, [dispatch, page]);
+    window.scrollTo(0, 0);
+  }, [dispatch, firstIndex, page]);
 
   const onSliderButton = useCallback(
     (i: number) => {
+      if (i === lastIndex && lastIndex <= sliderNumbers.length - 2) {
+        setFirstIndex(prev => prev + 3);
+        localStorage.setItem('firstIndex', JSON.stringify(firstIndex + 3));
+      }
+      if (i === firstIndex + 1 && firstIndex >= 3) {
+        setFirstIndex(prev => prev - 3);
+        localStorage.setItem('firstIndex', JSON.stringify(firstIndex - 3));
+      }
       dispatch(setPage(i));
       localStorage.setItem('catalogPage', JSON.stringify(i));
+      window.scrollTo(0, 0);
     },
-    [dispatch],
+    [dispatch, firstIndex, lastIndex, sliderNumbers.length],
   );
 
   return (
@@ -44,7 +67,7 @@ const Slider: FC<SliderProps> = memo(({pagesAmount}) => {
         <SliderArrowIcon className="slider__arrow-icon" />
       </button>
       <div className="slider__numbers">
-        {sliderNumbers.map(i => (
+        {visibleNumbers.map(i => (
           <button
             className={`slider__number ${page === i ? 'slider__number_active' : ''}`}
             key={i}
