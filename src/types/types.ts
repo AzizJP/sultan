@@ -7,6 +7,10 @@ export interface Cards {
   cards: Array<CardTypes>;
 }
 
+export interface Popup {
+  isPopupOpen: boolean;
+}
+
 export interface Breakpoint {
   isDesktop: boolean;
 }

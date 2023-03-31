@@ -6,6 +6,7 @@ import cardInfoReducer from './reducers/cardInfoSlice';
 import cardReducer from './reducers/cardSlice';
 import cardsReducer from './reducers/cardsSlice';
 import counterReducer from './reducers/counterSlice';
+import popupReducer from './reducers/popupSlice';
 
 const rootReducer = combineReducers({
   basketReducer,
@@ -14,6 +15,7 @@ const rootReducer = combineReducers({
   cardReducer,
   counterReducer,
   cardInfoReducer,
+  popupReducer,
 });
 
 export const setupStore = () => {

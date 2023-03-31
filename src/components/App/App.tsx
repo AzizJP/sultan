@@ -44,7 +44,7 @@ const App: FC = memo(() => {
       <Routes>
         <Route path="/" element={<CatalogPage />} />
         <Route path="order" element={<OrderPage />} />
-        <Route path="catalog/:cardId" element={<CardPage />} />
+        <Route path="catalog/:cardBarcode" element={<CardPage />} />
       </Routes>
       <Footer />
     </div>
