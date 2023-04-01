@@ -1,14 +1,13 @@
 import {FC, memo} from 'react';
 import {Link, useLocation} from 'react-router-dom';
 
+import {useAppSelector} from '../../hooks/redux';
+
 import './Breadcrumbs.scss';
 
-interface BreadcrumbsProps {
-  cardName: string;
-}
-
-const Breadcrumbs: FC<BreadcrumbsProps> = memo(({cardName}) => {
+const Breadcrumbs: FC = memo(() => {
   const location = useLocation();
+  const currentCardName = useAppSelector(state => state.cardName.cardName);
 
   return (
     <nav className="breadcrumbs">
@@ -24,12 +23,14 @@ const Breadcrumbs: FC<BreadcrumbsProps> = memo(({cardName}) => {
           Корзина
         </Link>
       ) : (
-        <>
-          <Link to="/" className="breadcrumbs__title">
-            Каталог
-          </Link>
-          <p className="breadcrumbs__title">{cardName}</p>
-        </>
+        currentCardName && (
+          <>
+            <Link to="/" className="breadcrumbs__title">
+              Каталог
+            </Link>
+            <p className="breadcrumbs__title">{currentCardName}</p>
+          </>
+        )
       )}
     </nav>
   );

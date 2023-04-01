@@ -30,7 +30,11 @@ const PhoneFooter: FC = memo(() => {
           </p>
           <div className="footer-phone__email">
             <p className="footer-phone__email-text">Подпишись на скидки и акции</p>
-            <Form placeholder="Введите ваш E-mail" width="270px" height="39px" backgroundColor="#ffffff">
+            <Form
+              placeholder="Введите ваш E-mail"
+              formClassName="footer-phone__form"
+              inputClassName="footer-phone__form-input"
+            >
               <ArrowIcon />
             </Form>
           </div>

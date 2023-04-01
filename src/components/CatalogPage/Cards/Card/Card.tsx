@@ -1,17 +1,16 @@
 import {FC, memo, useCallback} from 'react';
 import {Link} from 'react-router-dom';
 
-import {useAppDispatch, useAppSelector} from '../../hooks/redux';
+import {useAppDispatch, useAppSelector} from '../../../../hooks/redux';
 
-import {ReactComponent as BottleIcon} from '../../images/bottle.svg';
-import {ReactComponent as BoxIcon} from '../../images/box.svg';
-import {ReactComponent as BasketIcon} from '../../images/card-basket.svg';
+import {ReactComponent as BottleIcon} from '../../../../images/bottle.svg';
+import {ReactComponent as BoxIcon} from '../../../../images/box.svg';
+import {ReactComponent as BasketIcon} from '../../../../images/card-basket.svg';
 
-import {setBasket} from '../../store/reducers/basketSlice';
-import {setCard} from '../../store/reducers/cardSlice';
-import {changePointToComma} from '../../utils/helpers';
-import Button from '../Button/Button';
-import Counter from '../Counter/Counter';
+import {setBasket} from '../../../../store/reducers/basketSlice';
+import {changePointToComma} from '../../../../utils/helpers';
+import Button from '../../../Button/Button';
+import Counter from '../../../Counter/Counter';
 
 import {CardProps, CardTypes} from './Card.types';
 
@@ -19,7 +18,7 @@ import './Card.scss';
 
 const Card: FC<CardProps> = memo(({card}) => {
   const dispatch = useAppDispatch();
-  const basket = useAppSelector(state => state.basketReducer.basket);
+  const basket = useAppSelector(state => state.basket.basket);
 
   const cardAmount = basket.filter(i => i.barcode === card.barcode).length;
 
@@ -47,10 +46,9 @@ const Card: FC<CardProps> = memo(({card}) => {
     localStorage.setItem('basketArr', JSON.stringify(newArray));
   }, [basket, card, dispatch]);
 
-  const handleCardClick = useCallback(() => {
-    dispatch(setCard(card));
-    localStorage.setItem('currentCard', JSON.stringify(card));
-  }, [card, dispatch]);
+  // const handleCardClick = useCallback(() => {
+  //   dispatch(setCardName(card.name));
+  // }, [card, dispatch]);
 
   const handleAddCard = useCallback(() => {
     const newCard = {...card};
@@ -70,7 +68,7 @@ const Card: FC<CardProps> = memo(({card}) => {
         )}
         <p className="card__dimension-value">{`${card.dimension} ${card.dimensionType}`}</p>
       </div>
-      <Link to={`/catalog/${card.barcode}`} onClick={handleCardClick} className="card__link">
+      <Link to={`/catalog/${card.barcode}`} className="card__link">
         <span className="card__link-brand">{`${card.brand} `}</span>
         <span className="card__link-name">{card.name}</span>
       </Link>

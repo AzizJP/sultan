@@ -16,6 +16,13 @@
     width: 100%;
     max-width: 1020px;
   }
+
+  &__text {
+    margin: 0;
+    margin-top: 18px;
+    color: $colorDarkBlue;
+    max-width: 910px;
+  }
 }
 
 @media screen and (min-width: $breakpointDesktop) {

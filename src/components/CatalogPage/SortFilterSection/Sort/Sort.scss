@@ -1,0 +1,57 @@
+@import '../../../../styles/constants.scss';
+
+.sort {
+  display: flex;
+  align-items: center;
+  position: relative;
+  margin: 25px 0 37px;
+
+  &__title {
+    margin: 0;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 150%;
+  }
+
+  &__button {
+    align-self: start;
+    align-items: center;
+    background-color: $colorWhite;
+    gap: 5px;
+    border-radius: 0;
+
+    &:hover {
+      background-color: $colorWhite;
+      transition: none;
+    }
+
+    &-title {
+      margin: 0;
+      font-weight: 400;
+      font-size: 16px;
+      line-height: 150%;
+      color: $colorDarkBlue;
+    }
+
+    &-icon {
+      &_rotate {
+        transform: rotateX(180deg);
+      }
+    }
+  }
+}
+
+@media screen and (min-width: $breakpointDesktop) {
+  .sort {
+    margin: 0;
+
+    &__button {
+      transition: text-shadow linear 0.2s;
+
+      &:hover {
+        text-shadow: $colorGrey 1px 0 3px;
+        transition: text-shadow linear 0.2s;
+      }
+    }
+  }
+}

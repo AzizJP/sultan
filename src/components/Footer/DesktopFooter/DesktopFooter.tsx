@@ -25,7 +25,11 @@ const DesktopFooter: FC = memo(() => {
           </p>
           <div className="footer-desktop__email">
             <p className="footer-phone__email-text">Подпишись на скидки и акции</p>
-            <Form placeholder="Введите ваш E-mail" width="262px" height="39px" backgroundColor="#ffffff">
+            <Form
+              placeholder="Введите ваш E-mail"
+              formClassName="footer-phone__form footer-desktop__form"
+              inputClassName="footer-phone__form-input"
+            >
               <ArrowIcon />
             </Form>
           </div>

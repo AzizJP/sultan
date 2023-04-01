@@ -8,7 +8,7 @@ import PhoneFooter from './PhoneFooter/PhoneFooter';
 import './Footer.scss';
 
 const Footer: FC = memo(() => {
-  const isDesktop = useAppSelector(state => state.breakpointReducer.isDesktop);
+  const isDesktop = useAppSelector(state => state.breakpoint.isDesktop);
 
   return <footer className="footer">{isDesktop ? <DesktopFooter /> : <PhoneFooter />}</footer>;
 });

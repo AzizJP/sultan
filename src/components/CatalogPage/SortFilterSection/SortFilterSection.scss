@@ -1,0 +1,57 @@
+@import '../../../styles/constants.scss';
+
+.sort-filter {
+  &__title {
+    margin: 0;
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 120%;
+    text-transform: uppercase;
+
+    &-wrapper {
+      display: flex;
+      flex-direction: column;
+      margin-bottom: 15px;
+    }
+  }
+
+  &__filter {
+    &-buttons {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+  }
+}
+
+@media screen and (min-width: $breakpointLaptop) {
+  .sort-filter {
+    padding: 0 0 100px;
+
+    &__filter {
+      &-buttons {
+        flex-direction: row;
+        justify-content: space-between;
+        gap: 11px;
+        margin-bottom: 30px;
+      }
+    }
+  }
+}
+
+@media screen and (min-width: $breakpointDesktop) {
+  .sort-filter {
+    padding: 0 0 100px;
+
+    &__title {
+      font-size: 40px;
+
+      &-wrapper {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: end;
+        margin-bottom: 25px;
+      }
+    }
+  }
+}

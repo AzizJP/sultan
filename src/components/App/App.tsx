@@ -3,8 +3,8 @@ import {Route, Routes} from 'react-router-dom';
 
 import {useAppDispatch, useAppSelector} from '../../hooks/redux';
 
-import {setIsDesktop} from '../../store/reducers/breakpointSlice';
-import {DESKTOP_BREAKPOINT} from '../App/App.constants';
+import {setIsDesktop, setIsLaptop} from '../../store/reducers/breakpointSlice';
+import {DESKTOP_BREAKPOINT, LAPTOP_BREAKPOINT} from '../App/App.constants';
 import Breadcrumbs from '../Breadcrumbs/Breadcrumbs';
 
 import CardPage from '../CardPage/CardPage';
@@ -17,16 +17,12 @@ import OrderPage from '../OrderPage/OrderPage';
 import './App.scss';
 
 const App: FC = memo(() => {
-  const card = useAppSelector(state => state.cardReducer.card);
-  const isDesktop = useAppSelector(state => state.breakpointReducer.isDesktop);
+  const isDesktop = useAppSelector(state => state.breakpoint.isDesktop);
   const dispatch = useAppDispatch();
 
   const handleResize = useCallback(() => {
-    if (window.innerWidth > DESKTOP_BREAKPOINT) {
-      dispatch(setIsDesktop(true));
-    } else {
-      dispatch(setIsDesktop(false));
-    }
+    dispatch(setIsDesktop(window.innerWidth > DESKTOP_BREAKPOINT));
+    dispatch(setIsLaptop(window.innerWidth > LAPTOP_BREAKPOINT));
   }, [dispatch]);
 
   useEffect(() => {
@@ -40,7 +36,7 @@ const App: FC = memo(() => {
   return (
     <div className="page">
       <Header />
-      {isDesktop ? <Breadcrumbs cardName={card.name} /> : <ComeBack />}
+      {isDesktop ? <Breadcrumbs /> : <ComeBack />}
       <Routes>
         <Route path="/" element={<CatalogPage />} />
         <Route path="order" element={<OrderPage />} />

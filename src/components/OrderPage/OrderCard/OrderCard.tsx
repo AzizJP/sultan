@@ -8,24 +8,19 @@ import {ReactComponent as BoxIcon} from '../../../images/box.svg';
 import {ReactComponent as DeleteIcon} from '../../../images/delete.svg';
 
 import {setBasket} from '../../../store/reducers/basketSlice';
-import {setCard} from '../../../store/reducers/cardSlice';
 
 import {changePointToComma} from '../../../utils/helpers';
-import {CardProps, CardTypes} from '../../Card/Card.types';
+import Button from '../../Button/Button';
+import {CardProps, CardTypes} from '../../CatalogPage/Cards/Card/Card.types';
 import Counter from '../../Counter/Counter';
 
 import './OrderCard.scss';
 
 const OrderCard: FC<CardProps> = memo(({card}) => {
   const dispatch = useAppDispatch();
-  const basket = useAppSelector(state => state.basketReducer.basket);
+  const basket = useAppSelector(state => state.basket.basket);
 
   const cardAmount = basket.filter(i => i.barcode === card.barcode).length;
-
-  const handleCardClick = useCallback(() => {
-    dispatch(setCard(card));
-    localStorage.setItem('currentCard', JSON.stringify(card));
-  }, [card, dispatch]);
 
   const handleIncrement = useCallback(() => {
     const newArray = [...basket];
@@ -69,7 +64,7 @@ const OrderCard: FC<CardProps> = memo(({card}) => {
             )}
             <p className="card__dimension-value">{`${card.dimension} ${card.dimensionType}`}</p>
           </div>
-          <Link to={`/catalog/${card.barcode}`} onClick={handleCardClick} className="order-card__title">
+          <Link to={`/catalog/${card.barcode}`} className="order-card__title">
             {`${card.brand} ${card.name}`}
           </Link>
           <p className="order-card__description-text">{card.description}</p>
@@ -80,9 +75,9 @@ const OrderCard: FC<CardProps> = memo(({card}) => {
           <Counter onIncrement={handleIncrement} onDecrement={handleDecrement} count={cardAmount} />
         </div>
         <p className="order-card__price">{`${changePointToComma(card.price * cardAmount)} ₸`}</p>
-        <button className="order-card__delete" onClick={handleDeleteCard}>
+        <Button buttonClassName="order-card__delete" onClick={handleDeleteCard}>
           <DeleteIcon />
-        </button>
+        </Button>
       </div>
     </article>
   );

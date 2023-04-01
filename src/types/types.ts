@@ -1,4 +1,6 @@
-import {CardTypes} from '../components/Card/Card.types';
+import {CardTypes} from '../components/CatalogPage/Cards/Card/Card.types';
+import {FILTER} from '../components/CatalogPage/SortFilterSection/FilterButton/FilterButton.types';
+import {SortTypes} from '../components/CatalogPage/SortFilterSection/Sort/SortPopup/SortPopup.types';
 
 export interface Basket {
   basket: Array<CardTypes>;
@@ -14,14 +16,11 @@ export interface Popup {
 
 export interface Breakpoint {
   isDesktop: boolean;
+  isLaptop: boolean;
 }
 
 export interface CardName {
   cardName: string;
-}
-
-export interface Card {
-  card: CardTypes;
 }
 
 export interface Counter {
@@ -32,7 +31,15 @@ export interface PageCounter {
   page: number;
 }
 
+export interface SortType {
+  currentSortType: keyof typeof SortTypes | '';
+}
+
 export interface CardInfo {
   isOpenDescription: boolean;
   isOpenSpecification: boolean;
+}
+
+export interface ActiveFilter {
+  activeFilter: keyof typeof FILTER | '';
 }

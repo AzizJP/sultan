@@ -1,4 +1,5 @@
-import {FC, memo, useCallback} from 'react';
+import {FC, memo, useCallback, useEffect} from 'react';
+import {useParams} from 'react-router';
 
 import {useAppDispatch, useAppSelector} from '../../hooks/redux';
 
@@ -11,6 +12,7 @@ import {ReactComponent as ShareIcon} from '../../images/share.svg';
 
 import {setBasket} from '../../store/reducers/basketSlice';
 import {setIsOpenDescription, setIsOpenSpecification} from '../../store/reducers/cardInfoSlice';
+import {setCardName} from '../../store/reducers/cardNameSlice';
 import {decrement, increment, setCount} from '../../store/reducers/counterSlice';
 import {changePointToComma} from '../../utils/helpers';
 import Button from '../Button/Button';
@@ -20,12 +22,21 @@ import './CardPage.scss';
 
 const CardPage: FC = memo(() => {
   const dispatch = useAppDispatch();
-  const basket = useAppSelector(state => state.basketReducer.basket);
-  const isDesktop = useAppSelector(state => state.breakpointReducer.isDesktop);
-  const currentCard = useAppSelector(state => state.cardReducer.card);
-  const count = useAppSelector(state => state.counterReducer.count);
-  const isOpenDescription = useAppSelector(state => state.cardInfoReducer.isOpenDescription);
-  const isOpenSpecification = useAppSelector(state => state.cardInfoReducer.isOpenSpecification);
+  const basket = useAppSelector(state => state.basket.basket);
+  const cards = useAppSelector(state => state.cards.cards);
+  const isDesktop = useAppSelector(state => state.breakpoint.isDesktop);
+  const count = useAppSelector(state => state.counter.count);
+  const isOpenDescription = useAppSelector(state => state.cardInfo.isOpenDescription);
+  const isOpenSpecification = useAppSelector(state => state.cardInfo.isOpenSpecification);
+
+  const {cardBarcode} = useParams();
+  const cardIndex = cards.findIndex(card => card.barcode === cardBarcode);
+  const currentCard = cards[cardIndex];
+
+  useEffect(() => {
+    dispatch(setCardName(currentCard.name));
+    localStorage.setItem('currentCardName', JSON.stringify(currentCard.name));
+  }, [currentCard, dispatch]);
 
   const handleAddCard = useCallback(() => {
     const newArray = [...basket];

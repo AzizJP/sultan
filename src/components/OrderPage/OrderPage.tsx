@@ -14,8 +14,8 @@ import './OrderPage.scss';
 
 const OrderPage: FC = memo(() => {
   const dispatch = useAppDispatch();
-  const basket = useAppSelector(state => state.basketReducer.basket);
-  const isPopupOpen = useAppSelector(state => state.popupReducer.isPopupOpen);
+  const basket = useAppSelector(state => state.basket.basket);
+  const isPopupOpen = useAppSelector(state => state.popup.isPopupOpen);
   const sum = basket.reduce((acc, item) => acc + item.price, 0).toFixed(1);
 
   const sortedBasket = basket
@@ -56,7 +56,7 @@ const OrderPage: FC = memo(() => {
 
   return (
     <section className="order-page">
-      {isPopupOpen ? <Popup onClose={handlePopupClose} /> : null}
+      {isPopupOpen && <Popup onClose={handlePopupClose} />}
       <h1 className="order-page__title">Корзина</h1>
       <div className="order-page__cards">
         {sortedBasket.length === 0 ? (

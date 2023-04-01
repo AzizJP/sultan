@@ -8,14 +8,6 @@
   width: calc(100% - $paddingPhone * 2);
   max-width: $maxWidth;
 
-  &__title {
-    margin: 0;
-    font-weight: 500;
-    font-size: 20px;
-    line-height: 120%;
-    text-transform: uppercase;
-  }
-
   &__main {
     display: flex;
     justify-content: center;
@@ -26,12 +18,9 @@
   .catalog-page {
     padding: 0 0 100px;
 
-    &__title {
-      font-size: 40px;
-    }
-
     &__main {
       justify-content: space-between;
+      gap: 108px;
     }
   }
 }

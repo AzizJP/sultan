@@ -12,7 +12,7 @@ import {ReactComponent as MenuIcon} from '../../../images/menu.svg';
 import './PhoneHeader.scss';
 
 const PhoneHeader: FC = memo(() => {
-  const amount = useAppSelector(state => state.basketReducer.basket.length);
+  const amount = useAppSelector(state => state.basket.basket.length);
   return (
     <>
       <section className="header-phone__top-section">

@@ -8,7 +8,7 @@ import PhoneHeader from './PhoneHeader/PhoneHeader';
 import './Header.scss';
 
 const Header: FC = memo(() => {
-  const isDesktop = useAppSelector(state => state.breakpointReducer.isDesktop);
+  const isDesktop = useAppSelector(state => state.breakpoint.isDesktop);
 
   return <header className="header">{isDesktop ? <DesktopHeader /> : <PhoneHeader />}</header>;
 });

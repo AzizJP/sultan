@@ -48,6 +48,16 @@ $maxWidth: 485px;
     }
   }
 
+  &__form {
+    width: 270px;
+    height: 39px;
+    background-color: $colorWhite;
+
+    &-input {
+      background-color: $colorWhite;
+    }
+  }
+
   &__middle-section {
     display: flex;
     justify-content: space-between;

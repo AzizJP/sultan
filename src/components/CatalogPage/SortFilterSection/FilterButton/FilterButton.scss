@@ -1,0 +1,38 @@
+@import '../../../../styles/constants.scss';
+
+.filter-button {
+  padding: 0;
+  text-align: start;
+  line-height: 17px;
+  color: #3f4e65;
+  background-color: $colorWhite;
+  border: none;
+  cursor: pointer;
+
+  &_active {
+    font-weight: 700;
+  }
+}
+
+@media screen and (min-width: $breakpointLaptop) {
+  .filter-button {
+    padding: 18px;
+    height: 70px;
+    background-color: $colorWhite;
+    box-shadow: 0px 15px 70px -11px rgba(43, 28, 1, 0.04);
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background-color linear 0.2s;
+
+    &_active {
+      font-weight: 400;
+      background-color: $colorLightOrange;
+    }
+
+    &:hover {
+      background-color: $colorGreen;
+      transition: background-color linear 0.2s;
+    }
+  }
+}

@@ -1,23 +1,27 @@
 import {combineReducers, configureStore} from '@reduxjs/toolkit';
 
+import activeFilterReducer from './reducers/activeFilterSlice';
 import basketReducer from './reducers/basketSlice';
 import breakpointReducer from './reducers/breakpointSlice';
 import cardInfoReducer from './reducers/cardInfoSlice';
-import cardReducer from './reducers/cardSlice';
+import cardNameReducer from './reducers/cardNameSlice';
 import cardsReducer from './reducers/cardsSlice';
 import counterReducer from './reducers/counterSlice';
 import pageReducer from './reducers/pageSlice';
 import popupReducer from './reducers/popupSlice';
+import sortTypeReducer from './reducers/sortTypeSlice';
 
 const rootReducer = combineReducers({
-  basketReducer,
-  breakpointReducer,
-  cardsReducer,
-  cardReducer,
-  counterReducer,
-  cardInfoReducer,
-  popupReducer,
-  pageReducer,
+  basket: basketReducer,
+  breakpoint: breakpointReducer,
+  cards: cardsReducer,
+  cardName: cardNameReducer,
+  counter: counterReducer,
+  cardInfo: cardInfoReducer,
+  popup: popupReducer,
+  page: pageReducer,
+  activeFilter: activeFilterReducer,
+  currentSortType: sortTypeReducer,
 });
 
 export const setupStore = () => {

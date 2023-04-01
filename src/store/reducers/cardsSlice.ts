@@ -1,6 +1,6 @@
 import {createSlice, PayloadAction} from '@reduxjs/toolkit';
 
-import {CardTypes} from '../../components/Card/Card.types';
+import {CardTypes} from '../../components/CatalogPage/Cards/Card/Card.types';
 
 // eslint-disable-next-line import/no-unresolved
 import initialCards from '../../Data/Goods.json';

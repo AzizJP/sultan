@@ -1,1 +1,2 @@
 export const DESKTOP_BREAKPOINT = 1450;
+export const LAPTOP_BREAKPOINT = 710;

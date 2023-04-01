@@ -11,14 +11,15 @@ import {SliderProps} from './Slider.types';
 import './Slider.scss';
 
 const Slider: FC<SliderProps> = memo(({pagesAmount}) => {
-  const [firstIndex, setFirstIndex] = useState<number>(JSON.parse(localStorage.getItem('firstIndex')) || 0);
   const dispatch = useAppDispatch();
-  const page = useAppSelector(state => state.pageReducer.page);
+  const [firstIndex, setFirstIndex] = useState<number>(JSON.parse(localStorage.getItem('firstIndex')) || 0);
+  const page = useAppSelector(state => state.page.page);
 
   const sliderNumbers = [];
   for (let i = 1; i <= pagesAmount; ++i) {
     sliderNumbers.push(i);
   }
+
   const lastIndex = firstIndex + 5;
   const visibleNumbers = sliderNumbers.slice(firstIndex, lastIndex);
 

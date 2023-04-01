@@ -17,7 +17,7 @@ import Form from '../../Form/Form';
 import './DesktopHeader.scss';
 
 const DesktopHeader: FC = memo(() => {
-  const basket = useAppSelector(state => state.basketReducer.basket);
+  const basket = useAppSelector(state => state.basket.basket);
   const amount = basket.length;
   const sum = basket.reduce((acc, item) => acc + item.price, 0).toFixed(1);
 
@@ -56,7 +56,7 @@ const DesktopHeader: FC = memo(() => {
             <Button title="Каталог" buttonClassName="header-desktop__search-group-button">
               <CatalogIcon />
             </Button>
-            <Form placeholder="Поиск..." width="243px" height="39px">
+            <Form placeholder="Поиск..." formClassName="header-desktop__form">
               <LoupeIcon />
             </Form>
           </div>
