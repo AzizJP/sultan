@@ -1,0 +1,23 @@
+.admin-form {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  width: 100%;
+  max-width: 300px;
+
+  &__checkbox {
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+
+    &-label {
+      cursor: pointer;
+    }
+
+    &-wrapper {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+  }
+}

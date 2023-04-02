@@ -6,4 +6,5 @@ export interface ButtonProps {
   titleClassName?: string;
   onClick?: MouseEventHandler<HTMLButtonElement>;
   children?: ReactNode;
+  type?: 'button' | 'reset' | 'submit';
 }

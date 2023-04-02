@@ -49,9 +49,9 @@ const CatalogPage: FC = memo(() => {
 
   return (
     <section className="catalog-page">
-      <SortFilterSection activeType={activeType} isDesktop={isDesktop} />
+      <SortFilterSection activeType={activeType} isDesktop={isDesktop} filteredCards={filteredCards} />
       <div className="catalog-page__main">
-        {isDesktop ? <Sidebar /> : null}
+        {isDesktop ? <Sidebar filteredCards={filteredCards} /> : null}
         <Cards copyCards={filteredCards} />
       </div>
     </section>

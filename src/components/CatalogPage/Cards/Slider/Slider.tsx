@@ -1,4 +1,4 @@
-import {FC, memo, useCallback, useState} from 'react';
+import {FC, memo, useCallback, useEffect, useState} from 'react';
 
 import {useAppDispatch, useAppSelector} from '../../../../hooks/redux';
 
@@ -19,6 +19,13 @@ const Slider: FC<SliderProps> = memo(({pagesAmount}) => {
   for (let i = 1; i <= pagesAmount; ++i) {
     sliderNumbers.push(i);
   }
+
+  useEffect(() => {
+    if (pagesAmount === 1) {
+      dispatch(setPage(1));
+      localStorage.setItem('catalogPage', JSON.stringify(1));
+    }
+  }, [dispatch, pagesAmount]);
 
   const lastIndex = firstIndex + 5;
   const visibleNumbers = sliderNumbers.slice(firstIndex, lastIndex);

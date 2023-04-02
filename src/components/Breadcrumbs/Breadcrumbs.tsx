@@ -22,6 +22,10 @@ const Breadcrumbs: FC = memo(() => {
         <Link to="/order" className="breadcrumbs__title">
           Корзина
         </Link>
+      ) : location.pathname === '/admin' ? (
+        <Link to="/admin" className="breadcrumbs__title">
+          Админка
+        </Link>
       ) : (
         currentCardName && (
           <>

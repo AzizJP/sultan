@@ -4,9 +4,10 @@ import {Route, Routes} from 'react-router-dom';
 import {useAppDispatch, useAppSelector} from '../../hooks/redux';
 
 import {setIsDesktop, setIsLaptop} from '../../store/reducers/breakpointSlice';
+
+import AdminPage from '../AdminPage/AdminPage';
 import {DESKTOP_BREAKPOINT, LAPTOP_BREAKPOINT} from '../App/App.constants';
 import Breadcrumbs from '../Breadcrumbs/Breadcrumbs';
-
 import CardPage from '../CardPage/CardPage';
 import CatalogPage from '../CatalogPage/CatalogPage';
 import ComeBack from '../ComeBack/ComeBack';
@@ -41,6 +42,7 @@ const App: FC = memo(() => {
         <Route path="/" element={<CatalogPage />} />
         <Route path="order" element={<OrderPage />} />
         <Route path="catalog/:cardBarcode" element={<CardPage />} />
+        <Route path="admin" element={<AdminPage />} />
       </Routes>
       <Footer />
     </div>

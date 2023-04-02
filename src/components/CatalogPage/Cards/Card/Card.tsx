@@ -46,10 +46,6 @@ const Card: FC<CardProps> = memo(({card}) => {
     localStorage.setItem('basketArr', JSON.stringify(newArray));
   }, [basket, card, dispatch]);
 
-  // const handleCardClick = useCallback(() => {
-  //   dispatch(setCardName(card.name));
-  // }, [card, dispatch]);
-
   const handleAddCard = useCallback(() => {
     const newCard = {...card};
     const newArray = [...basket, newCard];

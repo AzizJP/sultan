@@ -16,11 +16,11 @@ import {FILTER} from '../SortFilterSection/FilterButton/FilterButton.types';
 
 import ManufacturerForm from './ManufacturerForm/ManufacturerForm';
 import PriceForm from './PriceForm/PriceForm';
-import {InputValueTypes} from './Sidebar.types';
+import {InputValueTypes, SidebarProps} from './Sidebar.types';
 
 import './Sidebar.scss';
 
-const Sidebar: FC = memo(() => {
+const Sidebar: FC<SidebarProps> = memo(({filteredCards}) => {
   const dispatch = useAppDispatch();
   const isDesktop = useAppSelector(state => state.breakpoint.isDesktop);
   const cards = useAppSelector(state => state.cards.cards);
@@ -82,7 +82,7 @@ const Sidebar: FC = memo(() => {
       {isDesktop && (
         <>
           <PriceForm inputValue={inputValue} handleInputValueChange={handleInputValueChange} />
-          <ManufacturerForm cards={cards} />
+          <ManufacturerForm cards={cards} displayedFilteredCards={filteredCards} />
           <div className="sidebar__buttons">
             <Button title="Показать" buttonClassName="sidebar__show" onClick={handleShowResults} />
             <Button buttonClassName="sidebar__delete" onClick={handleDeleteFilters}>
@@ -106,7 +106,7 @@ const Sidebar: FC = memo(() => {
       {showSidebar && (
         <>
           <PriceForm inputValue={inputValue} handleInputValueChange={handleInputValueChange} />
-          <ManufacturerForm cards={cards} />
+          <ManufacturerForm cards={cards} displayedFilteredCards={filteredCards} />
           <div className="sidebar__buttons">
             <Button title="Показать" buttonClassName="sidebar__show" onClick={handleShowResults} />
             <Button buttonClassName="sidebar__delete" onClick={handleDeleteFilters}>

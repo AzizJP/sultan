@@ -1,0 +1,38 @@
+@import '../../styles/constants.scss';
+
+.admin {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: $paddingPhone;
+  width: calc(100% - $paddingPhone * 2);
+  max-width: $maxWidth;
+
+  &__form {
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__title {
+    margin: 0;
+    padding: 0 0 20px;
+    font-size: 20px;
+    line-height: 150%;
+  }
+
+  &__cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+    justify-items: center;
+    gap: 21px;
+    width: 100%;
+    max-width: 1020px;
+  }
+}
+
+@media screen and (min-width: $breakpointDesktop) {
+  .admin {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+}

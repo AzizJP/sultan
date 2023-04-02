@@ -15,7 +15,7 @@ import {ManufacturerFormProps, ManufacturerType} from './ManufacturerForm.types'
 
 import './ManufacturerForm.scss';
 
-const ManufacturerForm: FC<ManufacturerFormProps> = memo(({cards}) => {
+const ManufacturerForm: FC<ManufacturerFormProps> = memo(({cards, displayedFilteredCards}) => {
   const dispatch = useAppDispatch();
   const activeManufacturer = useAppSelector(state => state.activeFilter.activeManufacturer);
   const checkboxValues = useAppSelector(state => state.checkboxValue.checkboxValues);
@@ -62,9 +62,9 @@ const ManufacturerForm: FC<ManufacturerFormProps> = memo(({cards}) => {
 
   const cardsByManufacturer = useCallback(
     (manufacturer: string) => {
-      return cards.filter(card => card.manufacturer === manufacturer).length;
+      return displayedFilteredCards.filter(card => card.manufacturer === manufacturer).length;
     },
-    [cards],
+    [displayedFilteredCards],
   );
 
   const toggleManufacturer = useCallback(() => {

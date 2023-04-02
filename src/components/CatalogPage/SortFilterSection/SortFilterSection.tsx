@@ -12,7 +12,7 @@ import {SortFilterSectionProps} from './SortFilterSection.types';
 
 import './SortFilterSection.scss';
 
-const SortFilterSection: FC<SortFilterSectionProps> = memo(({activeType, isDesktop}) => {
+const SortFilterSection: FC<SortFilterSectionProps> = memo(({activeType, isDesktop, filteredCards}) => {
   return (
     <div className="sort-filter-section">
       {isDesktop ? (
@@ -31,7 +31,7 @@ const SortFilterSection: FC<SortFilterSectionProps> = memo(({activeType, isDeskt
         <>
           <div className="sort-filter__title-wrapper">
             <h1 className="sort-filter__title">Косметика и гигиена</h1>
-            <Sidebar />
+            <Sidebar filteredCards={filteredCards} />
           </div>
           <div className="sort-filter__filter-buttons">
             {Object.keys(FILTER).map((key: keyof typeof FILTER) => (
