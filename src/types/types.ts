@@ -3,7 +3,7 @@ import {FILTER} from '../components/CatalogPage/SortFilterSection/FilterButton/F
 import {SortTypes} from '../components/CatalogPage/SortFilterSection/Sort/SortPopup/SortPopup.types';
 
 export interface Basket {
-  basket: Array<CardTypes>;
+  basket: Cards['cards'];
 }
 
 export interface Cards {

@@ -34,116 +34,6 @@
     }
   }
 
-  &__price {
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
-
-    &-title {
-      margin: 0;
-      font-size: 14px;
-      line-height: 150%;
-      font-weight: 300;
-      color: $colorDarkBlue;
-
-      &-dimension {
-        font-weight: 500;
-        color: $colorBlack;
-      }
-    }
-
-    &-form {
-      display: flex;
-      gap: 10px;
-    }
-
-    &-input {
-      padding: 0;
-      background: linear-gradient(90deg, rgba(255, 198, 80, 0.3) 0%, rgba(254, 202, 110, 0.3) 97.25%);
-      border: none;
-      border-radius: 1000px;
-      width: 105px;
-      height: 23px;
-      font-weight: 300;
-      font-size: 12px;
-      line-height: 15px;
-      text-align: center;
-      color: $colorDarkBlue;
-    }
-  }
-
-  &__manufacturer {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-    margin-top: 15px;
-
-    &-title {
-      margin: 0;
-      font-weight: 500;
-      font-size: 16px;
-      line-height: 150%;
-    }
-
-    &-search {
-      &-form {
-        width: 270px;
-        height: 39px;
-      }
-    }
-
-    &-form {
-      display: flex;
-      flex-direction: column;
-      gap: 5px;
-
-      &-input {
-        width: 10px;
-        height: 10px;
-        cursor: pointer;
-
-        &-wrapper {
-          display: flex;
-          align-items: center;
-          gap: 10px;
-        }
-
-        &-label {
-          cursor: pointer;
-          color: $colorDarkBlue;
-
-          &-amount {
-            font-weight: 400;
-            font-size: 10px;
-            line-height: 150%;
-            color: $colorDarkBlue;
-          }
-        }
-      }
-    }
-
-    &-show-all {
-      align-self: start;
-      align-items: center;
-      background-color: $colorWhite;
-      gap: 5px;
-
-      &-title {
-        margin: 0;
-        font-weight: 500;
-        font-size: 12px;
-        line-height: 150%;
-        color: $colorDarkBlue;
-      }
-
-      &-icon {
-        &_rotate {
-          transform: rotateX(180deg);
-        }
-      }
-    }
-  }
-
   &__filter-buttons {
     display: flex;
     flex-direction: column;
@@ -183,45 +73,11 @@
     border-radius: 50%;
   }
 }
+
 @media screen and (min-width: $breakpointDesktop) {
   .sidebar {
     max-width: 238px;
     margin: 0;
-
-    &__manufacturer {
-      &-search {
-        &-form {
-          width: 218px;
-
-          &-input {
-            width: 140px;
-          }
-        }
-      }
-
-      &-show-all {
-        transition: text-shadow linear 0.2s;
-
-        &:hover {
-          background-color: $colorWhite;
-          text-shadow: $colorGrey 1px 0 3px;
-          transition: text-shadow linear 0.2s;
-        }
-      }
-
-      &-form {
-        &-input {
-          &-label {
-            transition: text-shadow linear 0.2s;
-
-            &:hover {
-              text-shadow: $colorGrey 1px 0 3px;
-              transition: text-shadow linear 0.2s;
-            }
-          }
-        }
-      }
-    }
 
     &__filter-button {
       transition: text-shadow linear 0.2s;
