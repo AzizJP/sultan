@@ -1,16 +1,29 @@
-import {FC, memo} from 'react';
+import {FC, memo, useCallback} from 'react';
 
-import {SortType} from '../../../../../types/types';
+import {useAppDispatch} from '../../../../../hooks/redux';
+import {setActiveFilter} from '../../../../../store/reducers/activeFilterSlice';
 
-import {SortTypes} from './SortPopup.types';
+import {SortPopupProps, SortTypes} from './SortPopup.types';
 
 import './SortPopup.scss';
 
-const SortPopup: FC = memo(() => {
+const SortPopup: FC<SortPopupProps> = memo(({handleSortTypeChange, handlePopupClose}) => {
+  const dispatch = useAppDispatch();
+
+  const sort = useCallback(
+    (type: keyof typeof SortTypes) => {
+      handleSortTypeChange(type);
+      handlePopupClose();
+      localStorage.setItem('activeSort', JSON.stringify(type));
+      dispatch(setActiveFilter({key: 'activeSort', value: type}));
+    },
+    [dispatch, handlePopupClose, handleSortTypeChange],
+  );
+
   return (
     <div className="sort-popup">
-      {Object.keys(SortTypes).map((type: SortType['currentSortType']) => (
-        <button key={type} className="sort-popup__button">
+      {Object.keys(SortTypes).map((type: keyof typeof SortTypes) => (
+        <button key={type} className="sort-popup__button" onClick={() => sort(type)}>
           {type}
         </button>
       ))}

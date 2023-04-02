@@ -13,8 +13,8 @@ const FilterButton: FC<FilterButtonProps> = memo(({active, enumKey, className}) 
 
   const filter = useCallback(() => {
     const currentFilter = active ? '' : enumKey;
-    localStorage.setItem('activeFilter', JSON.stringify(currentFilter));
-    dispatch(setActiveFilter(currentFilter));
+    localStorage.setItem('activeType', JSON.stringify(currentFilter));
+    dispatch(setActiveFilter({key: 'activeType', value: currentFilter}));
   }, [active, dispatch, enumKey]);
 
   return (

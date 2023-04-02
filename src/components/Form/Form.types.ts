@@ -4,7 +4,8 @@ export interface FormProps {
   placeholder: string;
   formClassName: string;
   inputClassName?: string;
-  inputValue?: string;
-  onChange?(): void;
+  value?: string;
+  handleValueChange?(value: string): void;
+  handleSearch?(value: string): void;
   children: ReactNode;
 }

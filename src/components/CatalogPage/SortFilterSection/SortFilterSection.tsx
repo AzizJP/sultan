@@ -1,6 +1,6 @@
 import {FC, memo} from 'react';
 
-import {useAppSelector} from '../../../hooks/redux';
+// import {useAppSelector} from '../../../hooks/redux';
 
 import Sidebar from '../Sidebar/Sidebar';
 
@@ -12,20 +12,18 @@ import {SortFilterSectionProps} from './SortFilterSection.types';
 
 import './SortFilterSection.scss';
 
-const SortFilterSection: FC<SortFilterSectionProps> = memo(({activeFilter, isDesktop}) => {
-  const currentSortType = useAppSelector(state => state.currentSortType.currentSortType);
-
+const SortFilterSection: FC<SortFilterSectionProps> = memo(({activeType, isDesktop}) => {
   return (
     <div className="sort-filter-section">
       {isDesktop ? (
         <>
           <div className="sort-filter__title-wrapper">
             <h1 className="sort-filter__title">Косметика и гигиена</h1>
-            <Sort sortType={currentSortType} />
+            <Sort />
           </div>
           <div className="sort-filter__filter-buttons">
             {Object.keys(FILTER).map((key: keyof typeof FILTER) => (
-              <FilterButton key={key} enumKey={key} active={key === activeFilter} />
+              <FilterButton key={key} enumKey={key} active={key === activeType} />
             ))}
           </div>
         </>
@@ -37,10 +35,10 @@ const SortFilterSection: FC<SortFilterSectionProps> = memo(({activeFilter, isDes
           </div>
           <div className="sort-filter__filter-buttons">
             {Object.keys(FILTER).map((key: keyof typeof FILTER) => (
-              <FilterButton key={key} enumKey={key} active={key === activeFilter} />
+              <FilterButton key={key} enumKey={key} active={key === activeType} />
             ))}
           </div>
-          <Sort sortType={currentSortType} />
+          <Sort />
         </>
       )}
     </div>

@@ -4,3 +4,8 @@ export enum SortTypes {
   'Название по возрастанию' = 'Название по возрастанию',
   'Название по убыванию' = 'Название по убыванию',
 }
+
+export interface SortPopupProps {
+  handleSortTypeChange(type: keyof typeof SortTypes): void;
+  handlePopupClose(): void;
+}

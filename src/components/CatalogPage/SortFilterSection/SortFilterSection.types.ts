@@ -1,6 +1,6 @@
 import {ActiveFilter, Breakpoint} from '../../../types/types';
 
 export interface SortFilterSectionProps {
-  activeFilter: ActiveFilter['activeFilter'];
+  activeType: ActiveFilter['activeType'];
   isDesktop: Breakpoint['isDesktop'];
 }

@@ -29,7 +29,11 @@
       cursor: pointer;
 
       &-icon {
-        transform: rotate(-90deg);
+        transform: rotateZ(-90deg);
+
+        &_rotate {
+          transform: rotateZ(90deg);
+        }
       }
     }
   }

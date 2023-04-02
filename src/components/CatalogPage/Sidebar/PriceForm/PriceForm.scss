@@ -34,6 +34,9 @@
     font-size: 12px;
     line-height: 15px;
     text-align: center;
-    color: $colorDarkBlue;
+
+    &::placeholder {
+      color: $colorDarkBlue;
+    }
   }
 }

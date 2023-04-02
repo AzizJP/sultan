@@ -1,13 +1,14 @@
-import {CardTypes} from '../components/CatalogPage/Cards/Card/Card.types';
+import {CardsProps} from '../components/CatalogPage/Cards/Cards.types';
+import {ManufacturerType} from '../components/CatalogPage/Sidebar/ManufacturerForm/ManufacturerForm.types';
 import {FILTER} from '../components/CatalogPage/SortFilterSection/FilterButton/FilterButton.types';
 import {SortTypes} from '../components/CatalogPage/SortFilterSection/Sort/SortPopup/SortPopup.types';
 
 export interface Basket {
-  basket: Cards['cards'];
+  basket: CardsProps['copyCards'];
 }
 
 export interface Cards {
-  cards: Array<CardTypes>;
+  cards: CardsProps['copyCards'];
 }
 
 export interface Popup {
@@ -41,5 +42,16 @@ export interface CardInfo {
 }
 
 export interface ActiveFilter {
-  activeFilter: keyof typeof FILTER | '';
+  activeType: keyof typeof FILTER | '';
+  activePrice: [number, number];
+  activeSort: keyof typeof SortTypes | '';
+  activeManufacturer: Array<keyof typeof ManufacturerType>;
+}
+
+export interface CheckboxValuesType {
+  checkboxValues: Array<keyof typeof ManufacturerType>;
+}
+
+export interface SidebarSearchType {
+  cardAfterSearch: Array<keyof typeof ManufacturerType>;
 }
