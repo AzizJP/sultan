@@ -1,11 +1,10 @@
 import {FC, memo} from 'react';
 
-// import {useAppSelector} from '../../../hooks/redux';
-
 import Sidebar from '../Sidebar/Sidebar';
 
 import FilterButton from './FilterButton/FilterButton';
 import {FILTER} from './FilterButton/FilterButton.types';
+
 import Sort from './Sort/Sort';
 
 import {SortFilterSectionProps} from './SortFilterSection.types';

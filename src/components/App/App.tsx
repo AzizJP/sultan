@@ -18,8 +18,8 @@ import OrderPage from '../OrderPage/OrderPage';
 import './App.scss';
 
 const App: FC = memo(() => {
-  const isDesktop = useAppSelector(state => state.breakpoint.isDesktop);
   const dispatch = useAppDispatch();
+  const isDesktop = useAppSelector(state => state.breakpoint.isDesktop);
 
   const handleResize = useCallback(() => {
     dispatch(setIsDesktop(window.innerWidth > DESKTOP_BREAKPOINT));

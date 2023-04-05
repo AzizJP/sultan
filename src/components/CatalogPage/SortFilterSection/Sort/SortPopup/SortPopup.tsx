@@ -14,8 +14,8 @@ const SortPopup: FC<SortPopupProps> = memo(({handleSortTypeChange, handlePopupCl
     (type: keyof typeof SortTypes) => {
       handleSortTypeChange(type);
       handlePopupClose();
-      localStorage.setItem('activeSort', JSON.stringify(type));
       dispatch(setActiveFilter({key: 'activeSort', value: type}));
+      localStorage.setItem('activeSort', JSON.stringify(type));
     },
     [dispatch, handlePopupClose, handleSortTypeChange],
   );

@@ -11,11 +11,13 @@ import {setCardAfterSearch} from '../../../store/reducers/sidebarSearchSlice';
 
 import {ActiveFilter} from '../../../types/types';
 import Button from '../../Button/Button';
+
 import FilterButton from '../SortFilterSection/FilterButton/FilterButton';
 import {FILTER} from '../SortFilterSection/FilterButton/FilterButton.types';
 
 import ManufacturerForm from './ManufacturerForm/ManufacturerForm';
 import PriceForm from './PriceForm/PriceForm';
+
 import {InputValueTypes, SidebarProps} from './Sidebar.types';
 
 import './Sidebar.scss';
@@ -44,8 +46,8 @@ const Sidebar: FC<SidebarProps> = memo(({filteredCards}) => {
 
   const handleShowResults = useCallback(() => {
     const arr: ActiveFilter['activeManufacturer'] = [...activeManufacturer, ...checkboxValues];
-    localStorage.setItem('activeManufacturer', JSON.stringify(arr));
     dispatch(setActiveFilter({key: 'activeManufacturer', value: arr}));
+    localStorage.setItem('activeManufacturer', JSON.stringify(arr));
 
     const activePriceLocal: ActiveFilter['activePrice'] = [inputValue.first, inputValue.second];
     dispatch(setActiveFilter({key: 'activePrice', value: activePriceLocal}));
@@ -71,7 +73,7 @@ const Sidebar: FC<SidebarProps> = memo(({filteredCards}) => {
     <section className="sidebar">
       <div className="sidebar__header">
         <h3 className="sidebar__header-title">ПОДБОР ПО ПАРАМЕТРАМ</h3>
-        {isDesktop ? null : (
+        {!isDesktop && (
           <Button buttonClassName="sidebar__header-button" onClick={toggleSidebar}>
             <ArrowIcon
               className={`sidebar__header-button-icon ${showSidebar && 'sidebar__header-button-icon_rotate'}`}
@@ -82,49 +84,35 @@ const Sidebar: FC<SidebarProps> = memo(({filteredCards}) => {
       {isDesktop && (
         <>
           <PriceForm inputValue={inputValue} handleInputValueChange={handleInputValueChange} />
-          <ManufacturerForm cards={cards} displayedFilteredCards={filteredCards} />
+          <ManufacturerForm cards={cards} filteredCards={filteredCards} />
           <div className="sidebar__buttons">
             <Button title="Показать" buttonClassName="sidebar__show" onClick={handleShowResults} />
             <Button buttonClassName="sidebar__delete" onClick={handleDeleteFilters}>
               <DeleteIcon />
             </Button>
           </div>
-          {isDesktop ? (
-            <div className="sidebar__filter-buttons">
-              {Object.keys(FILTER).map((key: keyof typeof FILTER) => (
-                <FilterButton
-                  key={key}
-                  enumKey={key}
-                  active={key === activeType}
-                  className={`sidebar__filter-button ${key === activeType && 'sidebar__filter-button_active'}`}
-                />
-              ))}
-            </div>
-          ) : null}
+          <div className="sidebar__filter-buttons">
+            {Object.keys(FILTER).map((key: keyof typeof FILTER) => (
+              <FilterButton
+                key={key}
+                enumKey={key}
+                active={key === activeType}
+                className={`sidebar__filter-button ${key === activeType && 'sidebar__filter-button_active'}`}
+              />
+            ))}
+          </div>
         </>
       )}
       {showSidebar && (
         <>
           <PriceForm inputValue={inputValue} handleInputValueChange={handleInputValueChange} />
-          <ManufacturerForm cards={cards} displayedFilteredCards={filteredCards} />
+          <ManufacturerForm cards={cards} filteredCards={filteredCards} />
           <div className="sidebar__buttons">
             <Button title="Показать" buttonClassName="sidebar__show" onClick={handleShowResults} />
             <Button buttonClassName="sidebar__delete" onClick={handleDeleteFilters}>
               <DeleteIcon />
             </Button>
           </div>
-          {isDesktop ? (
-            <div className="sidebar__filter-buttons">
-              {Object.keys(FILTER).map((key: keyof typeof FILTER) => (
-                <FilterButton
-                  key={key}
-                  enumKey={key}
-                  active={key === activeType}
-                  className={`sidebar__filter-button ${key === activeType && 'sidebar__filter-button_active'}`}
-                />
-              ))}
-            </div>
-          ) : null}
         </>
       )}
     </section>

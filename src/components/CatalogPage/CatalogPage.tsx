@@ -3,6 +3,7 @@ import {FC, memo, useMemo} from 'react';
 import {useAppSelector} from '../../hooks/redux';
 
 import {CardTypes} from './Cards/Card/Card.types';
+
 import Cards from './Cards/Cards';
 import Sidebar from './Sidebar/Sidebar';
 import SortFilterSection from './SortFilterSection/SortFilterSection';
@@ -51,7 +52,7 @@ const CatalogPage: FC = memo(() => {
     <section className="catalog-page">
       <SortFilterSection activeType={activeType} isDesktop={isDesktop} filteredCards={filteredCards} />
       <div className="catalog-page__main">
-        {isDesktop ? <Sidebar filteredCards={filteredCards} /> : null}
+        {isDesktop && <Sidebar filteredCards={filteredCards} />}
         <Cards copyCards={filteredCards} />
       </div>
     </section>

@@ -1,7 +1,8 @@
 import {FC, memo} from 'react';
 
-import './Button.scss';
 import {ButtonProps} from './Button.types';
+
+import './Button.scss';
 
 const Button: FC<ButtonProps> = memo(({title, buttonClassName, titleClassName, onClick, children, type = 'button'}) => {
   return (

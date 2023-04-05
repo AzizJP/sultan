@@ -10,7 +10,9 @@ import {ReactComponent as DownloadIcon} from '../../../images/download.svg';
 import {ReactComponent as LocationIcon} from '../../../images/location.svg';
 import {ReactComponent as LoupeIcon} from '../../../images/loupe-white.svg';
 import {ReactComponent as MailIcon} from '../../../images/mail.svg';
+
 import {changePointToComma} from '../../../utils/helpers';
+
 import Button from '../../Button/Button';
 import Form from '../../Form/Form';
 
@@ -18,6 +20,7 @@ import './DesktopHeader.scss';
 
 const DesktopHeader: FC = memo(() => {
   const basket = useAppSelector(state => state.basket.basket);
+
   const amount = basket.length;
   const sum = basket.reduce((acc, item) => acc + item.price, 0).toFixed(1);
 

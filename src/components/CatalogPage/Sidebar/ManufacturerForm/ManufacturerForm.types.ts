@@ -3,7 +3,7 @@ import {CardsProps} from '../../Cards/Cards.types';
 
 export interface ManufacturerFormProps {
   cards: CardsProps['copyCards'];
-  displayedFilteredCards: Array<CardTypes>;
+  filteredCards: Array<CardTypes>;
 }
 
 export enum ManufacturerType {
