@@ -20,36 +20,6 @@
     }
   }
 
-  &__form {
-    display: flex;
-    flex-direction: column;
-    gap: 5px;
-
-    &-input {
-      width: 10px;
-      height: 10px;
-      cursor: pointer;
-
-      &-wrapper {
-        display: flex;
-        align-items: center;
-        gap: 10px;
-      }
-
-      &-label {
-        cursor: pointer;
-        color: $colorDarkBlue;
-
-        &-amount {
-          font-weight: 400;
-          font-size: 10px;
-          line-height: 150%;
-          color: $colorDarkBlue;
-        }
-      }
-    }
-  }
-
   &__show-all {
     align-self: start;
     align-items: center;
@@ -91,19 +61,6 @@
         background-color: $colorWhite;
         text-shadow: $colorGrey 1px 0 3px;
         transition: text-shadow linear 0.2s;
-      }
-    }
-
-    &__form {
-      &-input {
-        &-label {
-          transition: text-shadow linear 0.2s;
-
-          &:hover {
-            text-shadow: $colorGrey 1px 0 3px;
-            transition: text-shadow linear 0.2s;
-          }
-        }
       }
     }
   }

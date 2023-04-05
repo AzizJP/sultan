@@ -13,17 +13,18 @@ import './AdminPageCard.scss';
 const AdminPageCard: FC<AdminPageCardProps> = memo(({card, cards, handleCardsChange}) => {
   const [editedCard, setEditedCard] = useState({...card});
   const [isEdit, setIsEdit] = useState(false);
+  const {url, name, barcode} = card;
 
   const handleCardChange = useCallback((newCard: CardTypes) => {
     setEditedCard(newCard);
   }, []);
 
   const handleDeleteCard = useCallback(() => {
-    const newArr = [...cards].filter(i => i.barcode !== card.barcode);
+    const newArr = [...cards].filter(i => i.barcode !== barcode);
     handleCardsChange(newArr);
     localStorage.setItem('cards', JSON.stringify(newArr));
     if (newArr.length === 0) localStorage.removeItem('cards');
-  }, [card.barcode, cards, handleCardsChange]);
+  }, [barcode, cards, handleCardsChange]);
 
   const toggleEditCard = useCallback(() => {
     setIsEdit(!isEdit);
@@ -33,22 +34,22 @@ const AdminPageCard: FC<AdminPageCardProps> = memo(({card, cards, handleCardsCha
     (evt: FormEvent<HTMLFormElement>): void => {
       evt.preventDefault();
       setIsEdit(false);
-      const newArr = [...cards].filter(i => i.barcode !== card.barcode);
+      const newArr = [...cards].filter(i => i.barcode !== barcode);
       const copyCards = [...newArr, editedCard];
       handleCardsChange(copyCards);
       localStorage.setItem('cards', JSON.stringify(copyCards));
     },
-    [card.barcode, cards, editedCard, handleCardsChange],
+    [barcode, cards, editedCard, handleCardsChange],
   );
 
   return (
     <article className="admin-card">
-      <img src={card.url} alt="Изображение товара" className="admin-card__image" />
-      <Link to={`/catalog/${card.barcode}`} className="admin-card__link">
-        <span className="admin-card__link-name">{card.name}</span>
+      <img src={url} alt="Изображение товара" className="admin-card__image" />
+      <Link to={`/catalog/${barcode}`} className="admin-card__link">
+        <span className="admin-card__link-name">{name}</span>
       </Link>
       <p className="admin-card__text">
-        Штрихкод: <span className="admin-card__text-bold">{card.barcode}</span>
+        Штрихкод: <span className="admin-card__text-bold">{barcode}</span>
       </p>
       <Button
         title="Удалить"

@@ -9,7 +9,6 @@ import './AdminPageForm.scss';
 
 const AdminPageForm: FC<AdminPageFormProps> = memo(({card, title, handleCardChange, handleSubmit}) => {
   const [checkboxType, setCheckboxType] = useState([]);
-  // const [radioType, setRadioType] = useState('');
 
   const handleCardUrlChange = useCallback(
     (evt: ChangeEvent<HTMLInputElement>) => {

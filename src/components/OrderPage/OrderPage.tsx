@@ -5,6 +5,7 @@ import {setBasket} from '../../store/reducers/basketSlice';
 import {setIsPopupOpen} from '../../store/reducers/popupSlice';
 
 import {changePointToComma} from '../../utils/helpers';
+
 import Button from '../Button/Button';
 import Popup from '../Popup/Popup';
 
@@ -16,6 +17,7 @@ const OrderPage: FC = memo(() => {
   const dispatch = useAppDispatch();
   const basket = useAppSelector(state => state.basket.basket);
   const isPopupOpen = useAppSelector(state => state.popup.isPopupOpen);
+
   const sum = basket.reduce((acc, item) => acc + item.price, 0).toFixed(1);
 
   const sortedBasket = basket

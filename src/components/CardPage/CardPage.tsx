@@ -14,6 +14,7 @@ import {setBasket} from '../../store/reducers/basketSlice';
 import {setIsOpenDescription, setIsOpenSpecification} from '../../store/reducers/cardInfoSlice';
 import {setCardName} from '../../store/reducers/cardNameSlice';
 import {decrement, increment, setCount} from '../../store/reducers/counterSlice';
+
 import {changePointToComma} from '../../utils/helpers';
 import Button from '../Button/Button';
 import Counter from '../Counter/Counter';
@@ -28,15 +29,16 @@ const CardPage: FC = memo(() => {
   const count = useAppSelector(state => state.counter.count);
   const isOpenDescription = useAppSelector(state => state.cardInfo.isOpenDescription);
   const isOpenSpecification = useAppSelector(state => state.cardInfo.isOpenSpecification);
-
   const {cardBarcode} = useParams();
+
   const cardIndex = cards.findIndex(card => card.barcode === cardBarcode);
   const currentCard = cards[cardIndex];
+  const {url, name, barcode, dimension, dimensionType, brand, manufacturer, price, description} = currentCard;
 
   useEffect(() => {
-    dispatch(setCardName(currentCard.name));
-    localStorage.setItem('currentCardName', JSON.stringify(currentCard.name));
-  }, [currentCard, dispatch]);
+    dispatch(setCardName(name));
+    localStorage.setItem('currentCardName', JSON.stringify(name));
+  }, [currentCard, dispatch, name]);
 
   const handleAddCard = useCallback(() => {
     const newArray = [...basket];
@@ -66,25 +68,25 @@ const CardPage: FC = memo(() => {
 
   return (
     <section className="card-page">
-      <img src={currentCard.url} alt="Изображение товара" className="card-page__image" />
+      <img src={url} alt="Изображение товара" className="card-page__image" />
       <div className="card-page__info">
         <p className="card-page__presence">В наличии</p>
         <h3 className="card-page__title">
-          <span className="card-page__title-brand">{`${currentCard.brand} `}</span>
-          <span className="card-page__title-name">{currentCard.name}</span>
+          <span className="card-page__title-brand">{`${brand} `}</span>
+          <span className="card-page__title-name">{name}</span>
         </h3>
-        {isDesktop ? (
+        {isDesktop && (
           <div className="card-page__dimension">
-            {currentCard.dimensionType === 'мл' ? (
+            {dimensionType === 'мл' ? (
               <BottleIcon className="card__dimension-icon" />
             ) : (
               <BoxIcon className="card__dimension-icon" />
             )}
-            <p className="card__dimension-value">{`${currentCard.dimension} ${currentCard.dimensionType}`}</p>
+            <p className="card__dimension-value">{`${dimension} ${dimensionType}`}</p>
           </div>
-        ) : null}
+        )}
         <div className="card-page__buy">
-          <p className="card-page__price">{`${changePointToComma(currentCard.price)} ₸`}</p>
+          <p className="card-page__price">{`${changePointToComma(price)} ₸`}</p>
           <Counter count={count} onIncrement={handleIncrement} onDecrement={handleDecrement} />
           <Button
             title="В корзину"
@@ -94,18 +96,18 @@ const CardPage: FC = memo(() => {
           >
             <BasketIcon />
           </Button>
-          {isDesktop ? null : (
+          {!isDesktop && (
             <button className="card-page__share-button">
               <ShareIcon />
             </button>
           )}
         </div>
         <div className="card-page__links">
-          {isDesktop ? (
+          {isDesktop && (
             <button className="card-page__share-button">
               <ShareIcon />
             </button>
-          ) : null}
+          )}
           <p className="card-page__text">При покупке от 10 000 ₸ бесплатная доставка по Кокчетаву и области</p>
           <Button title="Прайс-лист" buttonClassName="card-page__button" titleClassName="card-page__button-title">
             <DownloadIcon className="card-page__button-icon" />
@@ -113,16 +115,16 @@ const CardPage: FC = memo(() => {
         </div>
         <div className="card-page__card-info">
           <p className="card-page__card-text">
-            Производитель: <span className="card__text-bold">{currentCard.manufacturer}</span>
+            Производитель: <span className="card__text-bold">{manufacturer}</span>
           </p>
           <p className="card-page__card-text">
-            Бренд: <span className="card-page__card-text-bold">{currentCard.brand}</span>
+            Бренд: <span className="card-page__card-text-bold">{brand}</span>
           </p>
           <p className="card-page__card-text">
-            Артикул: <span className="card-page__card-text-bold">{currentCard.barcode.slice(0, 6)}</span>
+            Артикул: <span className="card-page__card-text-bold">{barcode.slice(0, 6)}</span>
           </p>
           <p className="card-page__card-text">
-            Штрихкод: <span className="card-page__card-text-bold">{currentCard.barcode}</span>
+            Штрихкод: <span className="card-page__card-text-bold">{barcode}</span>
           </p>
         </div>
         <Button
@@ -132,10 +134,10 @@ const CardPage: FC = memo(() => {
           onClick={toggleDescriptionOpen}
         >
           <ArrowTriangleIcon
-            className={`card-page__description-button-icon ${isOpenDescription ? 'card-page__rotate' : ''}`}
+            className={`card-page__description-button-icon ${isOpenDescription && 'card-page__rotate'}`}
           />
         </Button>
-        {isOpenDescription ? <p className="card-page__description">{currentCard.description}</p> : null}
+        {isOpenDescription && <p className="card-page__description">{description}</p>}
         <Button
           title="Характеристики"
           buttonClassName="card-page__description-button card-page__specification-button"
@@ -143,49 +145,49 @@ const CardPage: FC = memo(() => {
           onClick={toggleSpecificationOpen}
         >
           <ArrowTriangleIcon
-            className={`card-page__description-button-icon ${isOpenSpecification ? 'card-page__rotate' : ''}`}
+            className={`card-page__description-button-icon ${isOpenSpecification && 'card-page__rotate'}`}
           />
         </Button>
-        {isOpenSpecification ? (
+        {isOpenSpecification && (
           <div className="card-page__card-info card-page__card-info_specification">
             <p className="card-page__card-text">
               {`Назначение: `}
-              <span className="card__text-bold">{currentCard.manufacturer}</span>
+              <span className="card__text-bold">{manufacturer}</span>
             </p>
             <p className="card-page__card-text">
               {`Тип: `}
-              <span className="card-page__card-text-bold">{currentCard.brand}</span>
+              <span className="card-page__card-text-bold">{brand}</span>
             </p>
             <p className="card-page__card-text">
               {`Производитель: `}
-              <span className="card-page__card-text-bold">{currentCard.manufacturer}</span>
+              <span className="card-page__card-text-bold">{manufacturer}</span>
             </p>
             <p className="card-page__card-text">
               {`Бренд: `}
-              <span className="card-page__card-text-bold">{currentCard.brand}</span>
+              <span className="card-page__card-text-bold">{brand}</span>
             </p>
             <p className="card-page__card-text">
               {`Артикул: `}
-              <span className="card-page__card-text-bold">{currentCard.barcode.slice(0, 6)}</span>
+              <span className="card-page__card-text-bold">{barcode.slice(0, 6)}</span>
             </p>
             <p className="card-page__card-text">
               {`Штрихкод: `}
-              <span className="card-page__card-text-bold">{currentCard.barcode}</span>
+              <span className="card-page__card-text-bold">{barcode}</span>
             </p>
             <p className="card-page__card-text">
               {`Вес: `}
-              <span className="card-page__card-text-bold">{`${currentCard.dimension} ${currentCard.dimensionType}`}</span>
+              <span className="card-page__card-text-bold">{`${dimension} ${dimensionType}`}</span>
             </p>
             <p className="card-page__card-text">
               {`Объем: `}
-              <span className="card-page__card-text-bold">{`${currentCard.dimension} ${currentCard.dimensionType}`}</span>
+              <span className="card-page__card-text-bold">{`${dimension} ${dimensionType}`}</span>
             </p>
             <p className="card-page__card-text">
               {`Кол-во в коробке: `}
-              <span className="card-page__card-text-bold">{`${currentCard.dimension} ${currentCard.dimensionType}`}</span>
+              <span className="card-page__card-text-bold">{`${dimension} ${dimensionType}`}</span>
             </p>
           </div>
-        ) : null}
+        )}
       </div>
     </section>
   );

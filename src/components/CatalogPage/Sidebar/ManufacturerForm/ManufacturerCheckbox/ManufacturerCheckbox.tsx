@@ -31,19 +31,19 @@ const ManufacturerCheckbox: FC<ManufacturerCheckboxProps> = memo(({manufacturer,
     return filteredCards.filter(card => card.manufacturer === manufacturer).length;
   }, [filteredCards, manufacturer]);
   return (
-    <div key={manufacturer} className="sidebar-manufacturer__form-input-wrapper">
+    <div key={manufacturer} className="checkbox__wrapper">
       <input
         type="checkbox"
         name={`${manufacturer}`}
         id={`${manufacturer}`}
-        className="sidebar-manufacturer__form-input"
+        className="checkbox__input"
         checked={activeManufacturer.includes(manufacturer) || checkboxValues.includes(manufacturer)}
         value={checkboxValues}
         onChange={handleCheckboxValueChange}
       />
-      <label htmlFor={`${manufacturer}`} className="sidebar-manufacturer__form-input-label">
+      <label htmlFor={`${manufacturer}`} className="checkbox__label">
         {manufacturer}
-        <span className="sidebar-manufacturer__form-input-label-amount">{` (${cardsByManufacturer()})`}</span>
+        <span className="checkbox__label-amount">{` (${cardsByManufacturer()})`}</span>
       </label>
     </div>
   );
