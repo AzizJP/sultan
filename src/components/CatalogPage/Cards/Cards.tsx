@@ -8,7 +8,7 @@ import {CardTypes} from './Card/Card.types';
 import {ITEMS_IN_PAGE} from './Cards.constants';
 
 import {CardsProps} from './Cards.types';
-import Slider from './Slider/Slider';
+import Pagination from './Pagination/Pagination';
 
 import './Cards.scss';
 
@@ -27,7 +27,7 @@ const Cards: FC<CardsProps> = memo(({copyCards}) => {
           <Card key={card.barcode} card={card} />
         ))}
       </div>
-      <Slider pagesAmount={pagesAmount} />
+      <Pagination pagesAmount={pagesAmount} />
       <p className="cards__text">
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam interdum ut justo, vestibulum sagittis iaculis
         iaculis. Quis mattis vulputate feugiat massa vestibulum duis. Faucibus consectetur aliquet sed pellentesque

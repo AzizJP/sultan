@@ -67,7 +67,7 @@
   }
 
   &__show {
-    width: 169px;
+    width: 216px;
     height: 59px;
   }
 
@@ -94,6 +94,10 @@
 
     &__buttons {
       margin: 10px 0 25px;
+    }
+
+    &__show {
+      width: 169px;
     }
   }
 }

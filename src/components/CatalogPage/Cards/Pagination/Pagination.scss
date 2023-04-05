@@ -1,6 +1,6 @@
 @import '../../../../styles/constants.scss';
 
-.slider {
+.pagination {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -48,7 +48,7 @@
 }
 
 @media screen and (min-width: $breakpointDesktop) {
-  .slider {
+  .pagination {
     &__number {
       transition: background-color linear 0.2s;
 
@@ -64,7 +64,7 @@
       }
 
       &:hover {
-        .slider__arrow-icon path {
+        .pagination__arrow-icon path {
           fill: $colorGreen;
           transition: fill linear 0.2s;
         }

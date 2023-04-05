@@ -2,22 +2,22 @@ import {FC, memo, useCallback, useEffect, useState} from 'react';
 
 import {useAppDispatch, useAppSelector} from '../../../../hooks/redux';
 
-import {ReactComponent as SliderArrowIcon} from '../../../../images/slider-arrow.svg';
+import {ReactComponent as PaginationArrowIcon} from '../../../../images/pagination-arrow.svg';
 
 import {decrementPage, incrementPage, setPage} from '../../../../store/reducers/pageSlice';
 
-import {SliderProps} from './Slider.types';
+import {PaginationProps} from './Pagination.types';
 
-import './Slider.scss';
+import './Pagination.scss';
 
-const Slider: FC<SliderProps> = memo(({pagesAmount}) => {
+const Pagination: FC<PaginationProps> = memo(({pagesAmount}) => {
   const dispatch = useAppDispatch();
-  const [firstIndex, setFirstIndex] = useState<number>(JSON.parse(localStorage.getItem('firstIndex')) || 0);
   const page = useAppSelector(state => state.page.page);
+  const [firstIndex, setFirstIndex] = useState<number>(JSON.parse(localStorage.getItem('firstIndex')) || 0);
 
-  const sliderNumbers = [];
+  const paginationNumbers = [];
   for (let i = 1; i <= pagesAmount; ++i) {
-    sliderNumbers.push(i);
+    paginationNumbers.push(i);
   }
 
   useEffect(() => {
@@ -28,18 +28,18 @@ const Slider: FC<SliderProps> = memo(({pagesAmount}) => {
   }, [dispatch, pagesAmount]);
 
   const lastIndex = firstIndex + 5;
-  const visibleNumbers = sliderNumbers.slice(firstIndex, lastIndex);
+  const visibleNumbers = paginationNumbers.slice(firstIndex, lastIndex);
 
   const incPage = useCallback(() => {
-    if (page === sliderNumbers.length) return;
-    if (page === lastIndex - 1 && lastIndex <= sliderNumbers.length - 2) {
+    if (page === paginationNumbers.length) return;
+    if (page === lastIndex - 1 && lastIndex <= paginationNumbers.length - 2) {
       setFirstIndex(prev => prev + 3);
       localStorage.setItem('firstIndex', JSON.stringify(firstIndex + 3));
     }
     dispatch(incrementPage(1));
     localStorage.setItem('catalogPage', JSON.stringify(page + 1));
     window.scrollTo(0, 0);
-  }, [dispatch, firstIndex, lastIndex, page, sliderNumbers.length]);
+  }, [dispatch, firstIndex, lastIndex, page, paginationNumbers.length]);
 
   const decPage = useCallback(() => {
     if (page === 1) return;
@@ -52,9 +52,9 @@ const Slider: FC<SliderProps> = memo(({pagesAmount}) => {
     window.scrollTo(0, 0);
   }, [dispatch, firstIndex, page]);
 
-  const onSliderButton = useCallback(
+  const onPaginationButton = useCallback(
     (i: number) => {
-      if (i === lastIndex && lastIndex <= sliderNumbers.length - 2) {
+      if (i === lastIndex && lastIndex <= paginationNumbers.length - 2) {
         setFirstIndex(prev => prev + 3);
         localStorage.setItem('firstIndex', JSON.stringify(firstIndex + 3));
       }
@@ -66,30 +66,30 @@ const Slider: FC<SliderProps> = memo(({pagesAmount}) => {
       localStorage.setItem('catalogPage', JSON.stringify(i));
       window.scrollTo(0, 0);
     },
-    [dispatch, firstIndex, lastIndex, sliderNumbers.length],
+    [dispatch, firstIndex, lastIndex, paginationNumbers.length],
   );
 
   return (
-    <section className="slider">
-      <button onClick={decPage} className="slider__arrow">
-        <SliderArrowIcon className="slider__arrow-icon" />
+    <section className="pagination">
+      <button onClick={decPage} className="pagination__arrow">
+        <PaginationArrowIcon className="pagination__arrow-icon" />
       </button>
-      <div className="slider__numbers">
+      <div className="pagination__numbers">
         {visibleNumbers.map(i => (
           <button
-            className={`slider__number ${page === i ? 'slider__number_active' : ''}`}
+            className={`pagination__number ${page === i ? 'pagination__number_active' : ''}`}
             key={i}
-            onClick={() => onSliderButton(i)}
+            onClick={() => onPaginationButton(i)}
           >
             {i}
           </button>
         ))}
       </div>
-      <button onClick={incPage} className="slider__arrow">
-        <SliderArrowIcon className="slider__arrow-icon slider__arrow-icon_rotate" />
+      <button onClick={incPage} className="pagination__arrow">
+        <PaginationArrowIcon className="pagination__arrow-icon pagination__arrow-icon_rotate" />
       </button>
     </section>
   );
 });
 
-export default Slider;
+export default Pagination;
