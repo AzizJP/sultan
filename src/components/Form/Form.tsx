@@ -1,7 +1,8 @@
 import {ChangeEvent, FC, FormEvent, memo, useCallback} from 'react';
 
-import './Form.scss';
 import {FormProps} from './Form.types';
+
+import './Form.scss';
 
 const Form: FC<FormProps> = memo(
   ({placeholder, formClassName, inputClassName, value, handleValueChange, handleSearch, children}) => {
