@@ -9,7 +9,7 @@ import './Popup.scss';
 
 const Popup: FC<PopupProps> = memo(({onClose}) => {
   return (
-    <section className="popup__overlay">
+    <section data-testid="order-popup" className="popup__overlay">
       <div className="popup">
         <button className="popup__close" onClick={onClose}>
           <CloseIcon />

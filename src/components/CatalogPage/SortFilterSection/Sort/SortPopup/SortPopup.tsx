@@ -21,7 +21,7 @@ const SortPopup: FC<SortPopupProps> = memo(({handleSortTypeChange, handlePopupCl
   );
 
   return (
-    <div className="sort-popup">
+    <div data-test-id="sort-popup" className="sort-popup">
       {Object.keys(SortTypes).map((type: keyof typeof SortTypes) => (
         <button key={type} className="sort-popup__button" onClick={() => sort(type)}>
           {type}

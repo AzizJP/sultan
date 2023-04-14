@@ -15,11 +15,11 @@ const Breadcrumbs: FC = memo(() => {
         Главная
       </Link>
       {location.pathname === '/' ? (
-        <Link to="/" className="breadcrumbs__title">
+        <Link data-testid="catalog-link" to="/" className="breadcrumbs__title">
           Косметика и гигиена
         </Link>
       ) : location.pathname === '/order' ? (
-        <Link to="/order" className="breadcrumbs__title">
+        <Link data-testid="order-link" to="/order" className="breadcrumbs__title">
           Корзина
         </Link>
       ) : location.pathname === '/admin' ? (

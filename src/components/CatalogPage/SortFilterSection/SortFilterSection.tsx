@@ -17,7 +17,9 @@ const SortFilterSection: FC<SortFilterSectionProps> = memo(({activeType, isDeskt
       {isDesktop ? (
         <>
           <div className="sort-filter__title-wrapper">
-            <h1 className="sort-filter__title">Косметика и гигиена</h1>
+            <h1 data-testid="catalog-title" className="sort-filter__title">
+              Косметика и гигиена
+            </h1>
             <Sort />
           </div>
           <div className="sort-filter__filter-buttons">

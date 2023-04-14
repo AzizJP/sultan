@@ -78,7 +78,7 @@ const DesktopHeader: FC = memo(() => {
               <DownloadIcon />
             </Button>
             <div className="basket">
-              <Link to="/order" className="basket__link">
+              <Link data-testid="order-link" to="/order" className="basket__link">
                 <BasketIcon className="basket__icon" />
                 <span className="basket__amount">{amount}</span>
               </Link>

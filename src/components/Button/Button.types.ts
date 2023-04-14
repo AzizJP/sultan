@@ -7,4 +7,5 @@ export interface ButtonProps {
   onClick?: MouseEventHandler<HTMLButtonElement>;
   children?: ReactNode;
   type?: 'button' | 'reset' | 'submit';
+  disabled?: boolean;
 }

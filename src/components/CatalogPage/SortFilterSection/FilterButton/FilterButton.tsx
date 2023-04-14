@@ -17,7 +17,12 @@ const FilterButton: FC<FilterButtonProps> = memo(({active, enumKey, className}) 
   }, [active, dispatch, enumKey]);
 
   return (
-    <button onClick={filter} className={`filter-button ${active && 'filter-button_active'} ${className}`}>
+    <button
+      type="button"
+      data-testid="filter-button"
+      onClick={filter}
+      className={`filter-button ${active && 'filter-button_active'} ${className}`}
+    >
       {FILTER[enumKey]}
     </button>
   );

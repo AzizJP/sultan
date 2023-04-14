@@ -59,7 +59,9 @@ const OrderPage: FC = memo(() => {
   return (
     <section className="order-page">
       {isPopupOpen && <Popup onClose={handlePopupClose} />}
-      <h1 className="order-page__title">Корзина</h1>
+      <h1 data-testid="basket-title" className="order-page__title">
+        Корзина
+      </h1>
       <div className="order-page__cards">
         {sortedBasket.length === 0 ? (
           <p>Корзина пуста</p>
@@ -74,6 +76,7 @@ const OrderPage: FC = memo(() => {
           buttonClassName="order-page__button"
           titleClassName="order-page__button-title"
           onClick={handleOrder}
+          disabled={!basket.length}
         />
       </div>
     </section>

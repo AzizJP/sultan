@@ -8,6 +8,7 @@
   background-color: $colorWhite;
   border: none;
   cursor: pointer;
+  width: max-content;
 
   &_active {
     font-weight: 700;

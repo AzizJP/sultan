@@ -7,5 +7,5 @@ export interface FormProps {
   value?: string;
   handleValueChange?(value: string): void;
   handleSearch?(value: string): void;
-  children: ReactNode;
+  children?: ReactNode;
 }
